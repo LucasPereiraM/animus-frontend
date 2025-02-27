@@ -8,9 +8,17 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        raleway: ["var(--font-raleway)", "sans-serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#07518E",
+        secondary: "#155BCB",
+        grey: "#E8E8E8",
+        bgGrey: "#F2F2F2",
+        bannerMain: "#4F4F4F",
       },
     },
   },
