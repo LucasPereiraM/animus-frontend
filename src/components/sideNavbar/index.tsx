@@ -11,8 +11,8 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
         <div className={`sidebar shadow-md ${isOpen ? 'open' : ''}`}>
-            <div className=''>
-                <Title title='Mão Amiga' />
+            <div className='ml-5'>
+                <Title title='Mão Amiga' textColor='text-black' />
             </div>
             <button onClick={onClose} className="close-button">
                 <Image

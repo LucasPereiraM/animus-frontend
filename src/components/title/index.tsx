@@ -5,14 +5,15 @@ import { usePathname } from 'next/navigation';
 
 interface TitleProps {
     title: string;
-    onToggleSidebar?: () => void; // Agora é opcional
+    textColor?: string;
+    onToggleSidebar?: () => void;
 }
 
-const Title: React.FC<TitleProps> = ({ title, onToggleSidebar }) => {
+const Title: React.FC<TitleProps> = ({ title, textColor = "text-black", onToggleSidebar }) => {
     const currentPath = usePathname();
 
     return (
-        <div className='text-black font-raleway font-normal'>
+        <div className={`font-raleway font-normal ${textColor}`}>
             <div className='flex flex-row'>
                 {onToggleSidebar && (
                     <div className='mt-20'>

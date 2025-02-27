@@ -14,8 +14,8 @@ const Navbar = () => {
     return (
         <div className="bg-[#FBFBFB] h-[171px] shadow-md">
             <div className="flex flex-row justify-between">
-                <div className='ml-40'>
-                    <Title title="Mão Amiga" onToggleSidebar={toggleSidebar} />
+                <div className='ml-36'>
+                    <Title title="Mão Amiga" onToggleSidebar={toggleSidebar} textColor='text-black' />
                 </div>
                 <div className="flex flex-row text-primary gap-5 h-5 mt-5 mr-14">
                     <h4>Acessibilidade</h4>
@@ -32,7 +32,6 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-
             <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
         </div>
     );
