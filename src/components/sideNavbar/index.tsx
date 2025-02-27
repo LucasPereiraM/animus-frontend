@@ -1,10 +1,19 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import Title from '../title';
 
-export default function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+interface SidebarProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
-        <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className={`sidebar shadow-md ${isOpen ? 'open' : ''}`}>
+            <div className=''>
+                <Title title='Mão Amiga' />
+            </div>
             <button onClick={onClose} className="close-button">
                 <Image
                     src="/icons/close.svg"
@@ -13,34 +22,35 @@ export default function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose:
                     height={27}
                 />
             </button>
-            <ul>
-                <li>
+
+            <ul className=''>
+                <li className='border-b-2'>
                     <Link href="/" onClick={onClose}>
                         Home
                     </Link>
                 </li>
-                <li>
+                <li className='border-b-2'>
                     <Link href="/biblioteca" onClick={onClose}>
                         Biblioteca
                     </Link>
                 </li>
-                <li>
+                <li className='border-b-2'>
                     <Link href="/contato" onClick={onClose}>
                         Contato
                     </Link>
                 </li>
-                <li>
+                <li className='border-b-2'>
                     <Link href="/musicas" onClick={onClose}>
                         Músicas
                     </Link>
                 </li>
-                <li>
+                <li className='border-b-2'>
                     <Link href="/receitas" onClick={onClose}>
                         Receitas
                     </Link>
                 </li>
-                <li>
-                    <Link href="/receitas" onClick={onClose}>
+                <li className='border-b-2'>
+                    <Link href="/profissionais" onClick={onClose}>
                         Profissionais
                     </Link>
                 </li>
