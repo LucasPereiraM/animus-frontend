@@ -1,5 +1,6 @@
 "use client"
 import Carousel from "@/components/carousel";
+import InputField from "@/components/inputField";
 
 interface Item {
     id: number;
@@ -17,8 +18,12 @@ const items: Item[] = [
 
 export default function Biblioteca() {
     return (
-        <div className="">
-            <Carousel items={items} />
+        <div>
+            <InputField emotions={false} inputWidth="w-[600px]" width="w-[600px]" marginLeft="ml-[650px]" marginTop="mt-10" placeholder="Pesquise um livro..." sendButton={true} />
+            <div className="-mt-64">
+                <Carousel items={items} />
+            </div>
+
         </div>
     );
 }

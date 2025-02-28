@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -28,12 +29,15 @@ const Title: React.FC<TitleProps> = ({ title, textColor = "text-black", onToggle
                     </div>
                 )}
                 <div className='ml-4 mt-4'>
-                    <Image
-                        src="/icons/logo.svg"
-                        alt="logo do site"
-                        width={58}
-                        height={68}
-                    />
+                    <Link href="/home">
+                        <Image
+                            src="/icons/logo.svg"
+                            alt="logo do site"
+                            width={58}
+                            height={68}
+                        />
+                    </Link>
+
                     <h1 className='text-[24px]'>{title}</h1>
                     <p className='text-[16px]'>{currentPath}</p>
                 </div>
