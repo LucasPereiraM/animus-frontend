@@ -4,7 +4,7 @@ import Image from 'next/image';
 interface Item {
     id: number;
     title: string;
-    subtitle?: string; 
+    subtitle?: string;
     img: string;
 }
 
@@ -51,7 +51,6 @@ export default function Carousel({ items }: CarouselProps) {
                             </div>
                             <div className="mt-56 text-center absolute bottom-[-6rem] w-full">
                                 <h3 className="text-lg font-normal text-primary">{item.title}</h3>
-                                {/* Renderiza o subtítulo apenas se ele existir */}
                                 {item.subtitle && (
                                     <p className="text-sm text-gray-600">{item.subtitle}</p>
                                 )}
