@@ -11,7 +11,7 @@ interface InputFieldProps {
 
 const Emotions = () => {
     return (
-        <div className="flex gap-2 self-end mr-64 mt-4">
+        <div className="flex gap-2 self-end mt-4 mr-72">
             <button>
                 <Image src="/icons/angry.svg" alt="emoção - raiva" width={53} height={53} />
             </button>

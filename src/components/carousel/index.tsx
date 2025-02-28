@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import Image from 'next/image';
-export default function Carousel() {
-    const items = [
-        { id: 1, title: 'Saúde Mental e Espiritualidade', author: 'Arival Dias Casimiro e Marcionilo Laranjeiras', img: '/livro1.png' },
-        { id: 2, title: 'Saúde Mental e Inteligência Emocional', author: 'Jorge Luis', img: '/livro2.png' },
-        { id: 3, title: 'Saúde Emocional', author: 'Maycon Assunção', img: '/livro3.png' },
-        { id: 4, title: 'Saúde Mental e Atenção Psicosocial', author: 'Paulo Amarante', img: '/livro4.webp' },
-    ];
 
+interface Item {
+    id: number;
+    title: string;
+    subtitle?: string; 
+    img: string;
+}
+
+interface CarouselProps {
+    items: Item[];
+}
+
+export default function Carousel({ items }: CarouselProps) {
     const [startIndex, setStartIndex] = useState(0);
 
     const goLeft = () => {
@@ -46,7 +51,10 @@ export default function Carousel() {
                             </div>
                             <div className="mt-56 text-center absolute bottom-[-6rem] w-full">
                                 <h3 className="text-lg font-normal text-primary">{item.title}</h3>
-                                <p className="text-sm text-gray-600">{item.author}</p>
+                                {/* Renderiza o subtítulo apenas se ele existir */}
+                                {item.subtitle && (
+                                    <p className="text-sm text-gray-600">{item.subtitle}</p>
+                                )}
                             </div>
                         </div>
                     ))}
