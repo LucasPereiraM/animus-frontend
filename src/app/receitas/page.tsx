@@ -21,7 +21,7 @@ export default function Receitas() {
     return (
         <div className="flex flex-row gap-24 justify-center">
             <div className="-mt-12">
-                <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Minas Gerais" />
+                <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Minas Gerais" sendButton={true} marginTop="mt-32" marginLeft=""/>
                 <div className = "-mt-72">
                     <Carousel items={items} />
                 </div>

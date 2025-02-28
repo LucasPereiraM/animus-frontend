@@ -14,7 +14,7 @@ export default function Contato() {
                 <ActionButton image="/icons/map.svg" name="Exibir Mapa" />
             </div>
             <div>
-                <InputField emotions={false} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Minas Gerais" />
+                <InputField emotions={false} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Minas Gerais"  sendButton={true} marginTop="mt-32" marginLeft = ""/>
                 <div className="-mt-40">
                     <Table />
                 </div>
