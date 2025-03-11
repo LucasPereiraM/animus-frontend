@@ -10,50 +10,32 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
-        <div className={`sidebar shadow-md ${isOpen ? 'open' : ''}`}>
-            <div className='ml-5'>
+        <div 
+            className={`fixed top-0 left-0 h-full w-64 bg-white shadow-md z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        >
+            <div className='ml-5 mt-5'>
                 <Title title='Mão Amiga' textColor='text-black' />
             </div>
-            <button onClick={onClose} className="close-button">
+            <button 
+                onClick={onClose} 
+                className="absolute top-4 right-4 block sm:block" // Corrigido para garantir visibilidade
+            >
                 <Image
                     src="/icons/close.svg"
-                    alt="menu de navegação"
+                    alt="Fechar Menu"
                     width={27}
                     height={27}
                 />
             </button>
 
-            <ul className=''>
-                <li className='border-b-2'>
-                    <Link href="/" onClick={onClose}>
-                        Home
-                    </Link>
-                </li>
-                <li className='border-b-2'>
-                    <Link href="/biblioteca" onClick={onClose}>
-                        Biblioteca
-                    </Link>
-                </li>
-                <li className='border-b-2'>
-                    <Link href="/contato" onClick={onClose}>
-                        Contato
-                    </Link>
-                </li>
-                <li className='border-b-2'>
-                    <Link href="/musicas" onClick={onClose}>
-                        Músicas
-                    </Link>
-                </li>
-                <li className='border-b-2'>
-                    <Link href="/receitas" onClick={onClose}>
-                        Receitas
-                    </Link>
-                </li>
-                <li className='border-b-2'>
-                    <Link href="/profissionais" onClick={onClose}>
-                        Profissionais
-                    </Link>
-                </li>
+            <ul className='mt-10'>
+                {["Home", "Biblioteca", "Contato", "Músicas", "Receitas", "Profissionais"].map((item) => (
+                    <li key={item} className='border-b-2 p-4 hover:bg-gray-100'>
+                        <Link href={`/${item.toLowerCase()}`} onClick={onClose} className="w-full h-full block">
+                            {item}
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </div>
     );
