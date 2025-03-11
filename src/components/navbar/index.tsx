@@ -12,16 +12,16 @@ const Navbar = () => {
     };
 
     return (
-        <div className="bg-[#FBFBFB] h-[171px] shadow-md relative">
-            <div className="flex flex-row justify-between">
-                <div className='ml-4 gap-4'>
-                    <Title 
-                        title="Mão Amiga" 
-                        onToggleSidebar={toggleSidebar} 
-                        textColor='text-black' 
+        <div className="bg-[#FBFBFB] h-[171px] shadow-md relative overflow-hidden">
+            <div className="flex flex-row justify-between items-center w-full px-4 overflow-x-hidden">
+                <div className="flex ml-4 gap-4">
+                    <Title
+                        title="Mão Amiga"
+                        onToggleSidebar={toggleSidebar}
+                        textColor='text-black'
                     />
                 </div>
-                <div className="flex flex-row text-primary gap-5 h-5 mt-5 mr-14">
+                <div className="flex flex-row text-primary gap-2 lg:gap-5 items-center mt-5 lg:mr-14 text-sm lg:text-base whitespace-nowrap">
                     <h4>Acessibilidade</h4>
                     <button>A-</button>
                     <button>A</button>

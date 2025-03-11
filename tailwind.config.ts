@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: { max: "320px" },
+      },
       fontFamily: {
         raleway: ["var(--font-raleway)", "sans-serif"],
       },

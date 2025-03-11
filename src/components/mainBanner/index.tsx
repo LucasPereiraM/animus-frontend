@@ -23,19 +23,19 @@ const Banner = () => {
                     className="w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 lg:mr-60"
                 />
             </div>
-            <div className="bg-[#EFEFEF] p-5 w-full max-w-8xl mx-auto shadow-md rounded-lg lg:ml-2 lg:w-[1200px]">
+            <div className="bg-[#EFEFEF] p-5 w-[350px] max-w-8xl mx-auto shadow-md rounded-lg lg:ml-2 lg:w-[1200px] xs:w-[250px]">
                 <div className="relative">
                     <input
                         type="text"
-                        className="w-full h-12 sm:h-16 lg:h-20 text-lg sm:text-xl lg:text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg lg:w-[1150px]"
+                        className=" h-12 sm:h-16 lg:h-20 text-lg sm:text-xl lg:text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg lg:w-[1150px] w-[300px] xs:w-[200px]"
                         value={inputValue}
                         onChange={handleInputChange}
-                        placeholder="Me sinto alegre e animado!"
+                        placeholder="Me sinto alegre!"
                     />
                     <button className="absolute inset-y-0 right-0 px-4">
                         <Image
                             src="/icons/arrow.svg"
-                            alt="menu de navegação"
+                            alt="enviar emoção"
                             width={61}
                             height={61}
                             className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16"
