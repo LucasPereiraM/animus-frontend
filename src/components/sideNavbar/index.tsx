@@ -18,7 +18,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
             <button 
                 onClick={onClose} 
-                className="absolute top-4 right-4 block sm:block" // Corrigido para garantir visibilidade
+                className="absolute top-4 right-4 block sm:block"
             >
                 <Image
                     src="/icons/close.svg"

@@ -15,7 +15,7 @@ const Title: React.FC<TitleProps> = ({ title, textColor = "text-black", onToggle
 
     return (
         <div className={`font-raleway font-normal ${textColor}`}>
-            <div className='flex flex-row'>
+            <div className='flex flex-row md:ml-20 ml-0'>
                 {onToggleSidebar && (
                     <div className='mt-20'>
                         <button onClick={onToggleSidebar}>
