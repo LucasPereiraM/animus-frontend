@@ -1,5 +1,5 @@
 "use client"
-import InputField from "@/components/inputField";
+import SelectStateCity from "@/components/stateAndCitySelector";
 import ActionButton from "@/components/button";
 import Table from "@/components/table";
 
@@ -13,9 +13,9 @@ export default function Contato() {
                 <ActionButton image="/icons/point.svg" name="Endereço" />
                 <ActionButton image="/icons/map.svg" name="Exibir Mapa" />
             </div>
-            <div>
-                <InputField emotions={false} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Minas Gerais"  sendButton={true} marginTop="mt-32" marginLeft = ""/>
-                <div className="-mt-40">
+            <div className="mt-32">
+                <SelectStateCity/>
+                <div>
                     <Table />
                 </div>
 
