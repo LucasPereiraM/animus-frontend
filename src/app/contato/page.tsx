@@ -1,5 +1,5 @@
 "use client"
-import SelectStateCity from "@/components/stateAndCitySelector";
+import SelectStateCity from "@/components/selectStateCity";
 import ActionButton from "@/components/button";
 import Table from "@/components/table";
 

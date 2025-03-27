@@ -2,7 +2,7 @@
 import React from "react";
 import useFetchData from "@/hooks/useFetchData"; // Importando o hook
 
-const API_URL = "URL_DA_API"; // Substitua pela URL real
+const API_URL = "https://maoamiga.up.railway.app/get_in_general_cvv";
 
 const Table = () => {
   const { data, loading, error } = useFetchData(API_URL);
@@ -13,7 +13,7 @@ const Table = () => {
         <div className="max-h-96 overflow-y-auto">
           <table className="min-w-full w-[1000px]">
             <thead className="bg-gray-200">
-              <tr>
+              <tr className="">
                 <th className="px-6 py-3 text-left text-xs font-medium text-primary uppercase tracking-wider">
                   EMAIL
                 </th>
@@ -49,11 +49,11 @@ const Table = () => {
                 </tr>
               ) : (
                 data.map((item, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.endereco}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.mantenedora}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.cnpj}</td>
+                  <tr key={index} className="w-[300px]">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.email}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.endereco}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.mantenedora}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.cnpj}</td>
                   </tr>
                 ))
               )}

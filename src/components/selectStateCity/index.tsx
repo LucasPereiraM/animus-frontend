@@ -16,8 +16,9 @@ interface ItemCVV {
 }
 
 const fetchDados = async (): Promise<Record<string, ItemCVV>> => {
-  const response = await fetch("http://10.79.139.166:5000/get_in_general_cvv");
+  const response = await fetch("https://maoamiga.up.railway.app/get_in_general_cvv");
   const data = await response.json();
+  console.log(data);
   return data;
 };
 
