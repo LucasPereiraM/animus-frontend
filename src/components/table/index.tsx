@@ -1,11 +1,42 @@
 "use client";
-import React from "react";
-import useFetchData from "@/hooks/useFetchData"; // Importando o hook
+import React, { useState, useEffect } from "react";
+import useFetchData from "@/hooks/useFetchData";
+
+type Item = {
+  email: string;
+  endereco: string;
+  mantenedora: string;
+  cnpj: string;
+  estado: string;
+  cidade: string;
+};
 
 const API_URL = "https://maoamiga.up.railway.app/get_in_general_cvv";
 
-const Table = () => {
+interface TableProps {
+  estadoSelecionado: string | null;
+  cidadeSelecionada: string | null;
+}
+
+const Table: React.FC<TableProps> = ({ estadoSelecionado, cidadeSelecionada }) => {
   const { data, loading, error } = useFetchData(API_URL);
+  const [displayed, setDisplayed] = useState<Item[]>([]);
+
+  useEffect(() => {
+    if (!data) return;
+
+    let filteredData = [...data];
+
+    if (estadoSelecionado) {
+      filteredData = filteredData.filter((item) => item.estado === estadoSelecionado);
+    }
+    
+    if (cidadeSelecionada) {
+      filteredData = filteredData.filter((item) => item.cidade === cidadeSelecionada);
+    }
+
+    setDisplayed(filteredData);
+  }, [data, estadoSelecionado, cidadeSelecionada]);
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -13,7 +44,7 @@ const Table = () => {
         <div className="max-h-96 overflow-y-auto">
           <table className="min-w-full w-[1000px]">
             <thead className="bg-gray-200">
-              <tr className="">
+              <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-primary uppercase tracking-wider">
                   EMAIL
                 </th>
@@ -41,19 +72,19 @@ const Table = () => {
                     Erro: {error}
                   </td>
                 </tr>
-              ) : data.length === 0 ? (
+              ) : displayed.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="text-center p-4 text-gray-500">
                     Nenhum dado encontrado
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => (
-                  <tr key={index} className="w-[300px]">
+                displayed.map((item, index) => (
+                  <tr key={index}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.email}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.endereco}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.mantenedora}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.cnpj}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.cnpj}</td>
                   </tr>
                 ))
               )}

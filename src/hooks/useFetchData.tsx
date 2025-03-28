@@ -5,6 +5,8 @@ interface Item {
   endereco: string;
   mantenedora: string;
   cnpj: string;
+  estado: string;
+  cidade: string;
 }
 
 const useFetchData = (url: string) => {
@@ -21,14 +23,17 @@ const useFetchData = (url: string) => {
           throw new Error(`Erro na requisição: ${response.status}`);
         }
         const result = await response.json();
+        console.log(result);
 
         const parsedData: Item[] = Object.values(result.CVV).map((item: any) => ({
           email: item.email || item["E-mail:"],
           endereco: item.endereco,
           mantenedora: item.mantenedora,
           cnpj: item.cnpj,
+          estado: item.estado,
+          cidade: item.cidade,
         }));
-
+        
         setData(parsedData);
       } catch (err: any) {
         setError(err.message);
