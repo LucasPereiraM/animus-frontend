@@ -18,7 +18,6 @@ interface ItemCVV {
 const fetchDados = async (): Promise<Record<string, ItemCVV>> => {
   const response = await fetch("https://maoamiga.up.railway.app/get_in_general_cvv");
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
@@ -33,48 +32,49 @@ const SelectStateCity: React.FC = () => {
     // Busca os dados da API
     fetchDados().then((res) => {
       setDados(res);
-
-      // Obtém estados únicos
-      const estadosUnicos = Array.from(
-        new Set(Object.values(res).map((item) => item.estado))
-      ).map((sigla) => ({ sigla, nome: sigla }));
-
-      setEstados(estadosUnicos);
+      console.log(res);
+  
+      if (res.CVV) {
+        const estadosUnicos = Array.from(
+          new Set(Object.values(res.CVV).map((item) => item.estado).filter(Boolean))
+        ).map((sigla) => ({ sigla, nome: sigla }));
+  
+        setEstados(estadosUnicos);
+        console.log(estadosUnicos);
+      }
     });
   }, []);
 
   useEffect(() => {
     if (estadoSelecionado) {
-      // Filtra cidades pelo estado selecionado
-      const cidadesFiltradas = Object.entries(dados)
+      const cidadesFiltradas = Object.entries(dados.CVV || {})
         .filter(([_, item]) => item.estado === estadoSelecionado)
         .map(([id, item]) => ({ id, nome: item.cidade }));
-
+  
       setCidades(cidadesFiltradas);
-      setCidadeSelecionada(""); // Reseta cidade selecionada
+      setCidadeSelecionada("");
     }
   }, [estadoSelecionado, dados]);
-
+  
   return (
     <div className="p-4 space-y-4">
-      {/* Select de Estado */}
-      <label className="block">
-        <span className="text-gray-700">Estado</span>
-        <select
-          value={estadoSelecionado}
-          onChange={(e) => setEstadoSelecionado(e.target.value)}
-          className="block w-full mt-1 p-2 border rounded"
-        >
-          <option value="">Selecione um estado</option>
-          {estados.map((estado) => (
-            <option key={estado.sigla} value={estado.sigla}>
-              {estado.nome}
-            </option>
-          ))}
-        </select>
-      </label>
+    <label className="block">
+      <span className="text-gray-700">Estado</span>
+      <select
+      value={estadoSelecionado}
+      onChange={(e) => setEstadoSelecionado(e.target.value)}
+      className="block w-full mt-1 p-2 border rounded"
+    >
+      <option value="">Selecione um estado</option>
+      {estados.map((estado) => (
+        <option key={estado.sigla} value={estado.sigla}>
+          {estado.nome}
+        </option>
+      ))}
+    </select>
 
-      {/* Select de Cidade */}
+    </label>
+
       <label className="block">
         <span className="text-gray-700">Cidade</span>
         <select
