@@ -41,9 +41,9 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
   useEffect(() => {
     fetchDados().then((res) => {
       setDados(res);
-      if (res.CVV) {
+      if (res) {
         const estadosUnicos = Array.from(
-          new Set(Object.values(res.CVV).map((item) => item.estado).filter(Boolean))
+          new Set(Object.values(res).map((item) => item.estado).filter(Boolean))
         ).map((sigla) => ({ sigla, nome: sigla }));
         
         setEstados(estadosUnicos);
@@ -53,7 +53,7 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
 
   useEffect(() => {
     if (estadoSelecionado) {
-      const cidadesFiltradas = Object.entries(dados.CVV || {})
+      const cidadesFiltradas = Object.entries(dados || {})
         .filter(([_, item]) => item.estado === estadoSelecionado)
         .map(([id, item]) => ({ id, nome: item.cidade }));
 

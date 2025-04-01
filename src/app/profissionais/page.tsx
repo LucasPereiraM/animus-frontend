@@ -7,9 +7,18 @@ type InfoFieldProps = {
     width: string;
 }
 
+
+const InfoField = ({ field, info, width }: InfoFieldProps) => {
+    return (
+        <div className={`bg-white p-5 rounded-lg shadow-lg h-full ${width}`}>
+            <p className="text-2xl"><span className="font-semibold text-2xl">{field} </span>{info}</p>
+        </div>
+    )
+}
+
 const SwitchToMap = () => {
     return (
-        <button className="flex flex-row rounded-md shadow-md p-5 gap-5 mb-10 mr-64 hover:bg-slate-100">
+        <button className="flex flex-row rounded-md shadow-md p-5 gap-5 mb-10 mt-10 hover:bg-slate-100">
             <Image
                 src="/icons/pin-map-fill.svg"
                 alt="logo do site"
@@ -22,20 +31,11 @@ const SwitchToMap = () => {
     )
 }
 
-const InfoField = ({ field, info, width }: InfoFieldProps) => {
-    return (
-        <div className={`bg-white p-5 rounded-lg shadow-lg h-full ${width}`}>
-            <p className="text-2xl"><span className="font-semibold text-2xl">{field} </span>{info}</p>
-        </div>
-    )
-}
-
 export default function Profissionais() {
     return (
         <div>
             <div className="mt-24">
                 <div className="flex justify-end">
-                    <SwitchToMap />
                 </div>
                 <h2 className="text-4xl ml-28">Pesquise um Profissional:</h2>
             </div>
@@ -71,6 +71,7 @@ export default function Profissionais() {
                     <Image src="/maumau.png" alt="Descrição da imagem" width={350} height={350} className="rounded-lg shadow-lg" />
                 </div>
             </div>
+            <SwitchToMap/>
         </div>
     );
 }

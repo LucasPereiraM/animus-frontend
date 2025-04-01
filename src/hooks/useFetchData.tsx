@@ -25,7 +25,7 @@ const useFetchData = (url: string) => {
         const result = await response.json();
         console.log(result);
 
-        const parsedData: Item[] = Object.values(result.CVV).map((item: any) => ({
+        const parsedData: Item[] = Object.values(result).map((item: any) => ({
           email: item.email || item["E-mail:"],
           endereco: item.endereco,
           mantenedora: item.mantenedora,
