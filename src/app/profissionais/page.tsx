@@ -36,13 +36,13 @@ export default function Profissionais() {
         <div>
             <div className="flex flex-row justify-center items-center">
                 <div className="flex flex-col">
-                    <h2 className="text-3xl mt-10 mb-10">Pesquise um Profissional:</h2>
+                    <h2 className="text-4xl mt-10 mb-10">Pesquise um Profissional:</h2>
                     <div className="flex flex-row gap-10 h-[150px]">
                         <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Nome do Médico" sendButton={false}/>
                         <InputField emotions={false} inputWidth="w-[200px]" width="w-[250px]" placeholder="UF" sendButton={false} />
                         <InputField emotions={false} inputWidth="w-[500px]" width="w-[550px]" placeholder="CRM" sendButton={false} />
                     </div>
-                    <div className="flex flex-row gap-10">
+                    <div className="flex flex-row gap-10 h-[150px]">
                         <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Especialidade" sendButton={false} />
                         <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Área de atuação" sendButton={false} />
                         <button className="mt-8 h-fit">
@@ -51,9 +51,9 @@ export default function Profissionais() {
                     </div>
                 </div>
             </div>
-            <div className="ml-28 -mt-5 mb-40 flex flex-row gap-10">
-                <div className="flex flex-col gap-10 w-1/2">
-                    <h2 className="text-4xl mb-10">Dados:</h2>
+            <div className="flex flex-row gap-10">
+                <div className="flex flex-col gap-10">
+                    <h2 className="text-4xl mb-10 mt-20">Dados:</h2>
                     <InfoField field="Nome:" info="Dr. Mau Mau" width="w-full" />
                     <InfoField field="Especialidade:" info="Psiquiatria" width="w-full" />
                     <div className="flex flex-row gap-5 w-full">
@@ -61,7 +61,7 @@ export default function Profissionais() {
                         <InfoField field="Inscrição:" info="Principal" width="w-1/2" />
                     </div>
                     <InfoField field="Endereço:" info="Bloco 1b, Santa Mônica, Uberlândia - MG" width="w-full" />
-                    <InfoField field="Telefone:" info="34 99999-9999" width="w-1/2" />
+                    <InfoField field="Telefone:" info="34 99999-9999" width="w-full" />
                 </div>
                 <div className="flex w-1/2 h-1/2 ml-20 mt-28">
                     <Image src="/maumau.png" alt="Descrição da imagem" width={350} height={350} className="rounded-lg shadow-lg" />
