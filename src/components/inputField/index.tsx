@@ -50,12 +50,12 @@ const InputField = ({ emotions, width, inputWidth, placeholder, sendButton, marg
     };
 
     return (
-        <div className={`font-raleway w-1/2 tracking-wide flex flex-col mb-52 ${marginTop} ${marginLeft}`}>
+        <div className={`font-raleway w-1/2 tracking-wide flex flex-col ${marginTop} ${marginLeft}`}>
             <div className={`bg-[#EFEFEF] p-5 shadow-md rounded-lg ${width} flex flex-col`}>
-                <div className="relative flex items-center justify-center">
+                <div className="relative flex">
                     <input
                         type="text"
-                        className={`${inputWidth} h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg pr-16`}
+                        className={`${inputWidth} h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg`}
                         value={inputValue}
                         onChange={handleInputChange}
                         placeholder={placeholder}

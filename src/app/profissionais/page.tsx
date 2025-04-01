@@ -36,17 +36,19 @@ export default function Profissionais() {
         <div>
             <div className="flex flex-row justify-center items-center">
                 <div className="flex flex-col">
-                    <h2 className="text-4xl mt-10 mb-10">Pesquise um Profissional:</h2>
+                    <h2 className="text-4xl mt-10 mb-10 ml-5">Pesquise um Profissional</h2>
                     <div className="flex flex-row gap-10 h-[150px]">
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Nome do Médico" sendButton={false}/>
-                        <InputField emotions={false} inputWidth="w-[200px]" width="w-[250px]" placeholder="UF" sendButton={false} />
-                        <InputField emotions={false} inputWidth="w-[500px]" width="w-[550px]" placeholder="CRM" sendButton={false} />
+                        <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Nome do Médico" sendButton={false}/>
+                        <InputField emotions={false} inputWidth="w-[150px]" width="w-[200px]" placeholder="UF" sendButton={false} />
+                        <InputField emotions={false} inputWidth="w-[400px]" width="w-[450px]" placeholder="CRM" sendButton={false} />
                     </div>
-                    <div className="flex flex-row gap-10 h-[150px]">
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Especialidade" sendButton={false} />
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Área de atuação" sendButton={false} />
-                        <button className="mt-8 h-fit">
-                            <Image src="/icons/search.svg" alt="buscar profissional" width={70} height={70} />
+                    <div className="flex flex-col gap-10">
+                        <div className="flex flex-row">
+                            <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Especialidade" sendButton={false} />
+                            <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Área de atuação" sendButton={false} />
+                        </div>
+                        <button className="flex flex-row justify-center items-center gap-5">
+                            <Image src="/icons/search.svg" alt="buscar profissional" width={60} height={60} />
                         </button>
                     </div>
                 </div>
