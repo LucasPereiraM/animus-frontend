@@ -34,22 +34,18 @@ const SwitchToMap = () => {
 export default function Profissionais() {
     return (
         <div>
-            <div className="mt-24">
-                <div className="flex justify-end">
-                </div>
-                <h2 className="text-4xl ml-28">Pesquise um Profissional:</h2>
-            </div>
-            <div className="flex flex-row">
-                <div className="ml-28 flex flex-col">
-                    <div className="flex flex-row h-[200px] ml-">
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Nome do Médico" sendButton={false} marginTop="mt-10" marginLeft="" />
-                        <InputField emotions={false} inputWidth="w-[150px]" width="w-[200px]" placeholder="UF" sendButton={false} marginTop="mt-10" marginLeft="ml-10" />
-                        <InputField emotions={false} inputWidth="w-[460px]" width="w-[510px]" placeholder="CRM" sendButton={false} marginTop="mt-10" marginLeft="-ml-[380px]" />
+            <div className="flex flex-row justify-center items-center">
+                <div className="flex flex-col">
+                    <h2 className="text-3xl mt-10 mb-10">Pesquise um Profissional:</h2>
+                    <div className="flex flex-row gap-10 h-[150px]">
+                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Nome do Médico" sendButton={false}/>
+                        <InputField emotions={false} inputWidth="w-[200px]" width="w-[250px]" placeholder="UF" sendButton={false} />
+                        <InputField emotions={false} inputWidth="w-[500px]" width="w-[550px]" placeholder="CRM" sendButton={false} />
                     </div>
-                    <div className="flex flex-row h-[200px]">
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Especialidade" sendButton={false} marginTop="" marginLeft="" />
-                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Área de atuação" sendButton={false} marginTop="" marginLeft="ml-10" />
-                        <button className="flex h-9 ml-10 mt-12 hover:mt-[46px]">
+                    <div className="flex flex-row gap-10">
+                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Especialidade" sendButton={false} />
+                        <InputField emotions={false} inputWidth="w-[700px]" width="w-[750px]" placeholder="Área de atuação" sendButton={false} />
+                        <button className="mt-8 h-fit">
                             <Image src="/icons/search.svg" alt="buscar profissional" width={70} height={70} />
                         </button>
                     </div>
