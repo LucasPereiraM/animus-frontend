@@ -37,7 +37,6 @@ const Title: React.FC<TitleProps> = ({ title, textColor = "text-black", onToggle
                             height={68}
                         />
                     </Link>
-
                     <h1 className='lg:text-[24px] text-[20px]'>{title}</h1>
                     <p className='lg:text-[16px] text-[14px]'>{currentPath}</p>
                 </div>
