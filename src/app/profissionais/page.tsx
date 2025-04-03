@@ -10,9 +10,9 @@ type InfoFieldProps = {
 
 const InfoField = ({ field, info, width }: InfoFieldProps) => {
     return (
-        <div className={`bg-white p-5 rounded-lg shadow-md h-full border-2 ${width}`}>
+        <div className={`p-5 rounded-lg shadow-md h-full border-2 hover:bg-gray-50 ${width}`}>
             <div className="flex flex-rcw gap-5">
-                <span className="font-semibold text-2xl bg-gray-300 rounded-md p-2 flex items-center">{field} </span>
+                <span className="text-2xl bg-gray-300 rounded-md p-2 flex items-center">{field} </span>
                 <p className="text-2xl flex justify-center items-center">{info}</p>
             </div>
         </div>
@@ -22,13 +22,10 @@ const InfoField = ({ field, info, width }: InfoFieldProps) => {
 const SwitchToMap = () => {
     return (
         <button className="flex flex-row rounded-md shadow-md p-5 gap-5 mb-10 mt-10 hover:bg-slate-100 w-fit ml-14">
-            <Image
-                src="/icons/pin-map-fill.svg"
-                alt="logo do site"
-                width={30}
-                height={30}
-            />
-            <p className="text-xl text-center text-primary">Profissionais na área</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-geo-alt-fill text-primary" viewBox="0 0 16 16">
+                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+            </svg>
+            <p className="text-xl text-center">Profissionais na área</p>
         </button>
     )
 }
@@ -38,7 +35,7 @@ export default function Profissionais() {
         <div className="flex flex-col gap-10">
             <div className="flex flex-row justify-center items-center">
                 <div className="flex flex-col">
-                    <h2 className="text-4xl mt-10 mb-10 ml-2 text-gray-600">Pesquise um Profissional</h2>
+                    <h2 className="text-4xl mt-10 mb-16 ml-2 text-gray-600">Pesquise um Profissional</h2>
                     <div className="flex flex-row gap-10 h-[150px]">
                         <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Nome do Médico" sendButton={false} />
                         <InputField emotions={false} inputWidth="w-[150px]" width="w-[200px]" placeholder="UF" sendButton={false} />
@@ -53,8 +50,8 @@ export default function Profissionais() {
                         </div>
                     </div>
                 </div>
-                <button className="ml-10 mt-32">
-                    <Image src="/icons/search.svg" alt="buscar profissional" width={60} height={60} />
+                <button className="ml-10 mt-36">
+                    <Image src="/icons/search.svg" alt="buscar profissional" className="hover:mb-1" width={60} height={60} />
                 </button>
             </div>
             <div className="flex flex-row gap-10">
@@ -75,7 +72,10 @@ export default function Profissionais() {
                     <Image src="/maumau.png" alt="Descrição da imagem" width={350} height={350} className="rounded-lg shadow-lg" />
                 </div>
             </div>
-            <SwitchToMap />
+            <div className="flex justify-center">
+                <SwitchToMap />
+            </div>
+
         </div>
     );
 }
