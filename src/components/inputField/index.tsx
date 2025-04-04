@@ -13,9 +13,9 @@ interface InputFieldProps {
 }
 
 const SendButton = () => {
-    return(
+    return (
         <button className="absolute right-4 flex items-center">
-            <Image src="/icons/arrow.svg" alt="menu de navegação" width={61} height={61} />
+            <Image src="/icons/arrow.svg" alt="menu de navegação" className='mt-2' width={61} height={61} />
         </button>
     )
 }

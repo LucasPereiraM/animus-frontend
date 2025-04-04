@@ -10,14 +10,14 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
-        <div 
+        <div
             className={`fixed top-0 left-0 h-full w-64 bg-white shadow-md z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         >
             <div className='ml-5 mt-5'>
                 <Title title='Mão Amiga' textColor='text-black' />
             </div>
-            <button 
-                onClick={onClose} 
+            <button
+                onClick={onClose}
                 className="absolute top-4 right-4 block sm:block"
             >
                 <Image
@@ -29,7 +29,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </button>
 
             <ul className='mt-10'>
-                {["Home", "Biblioteca", "Contato", "Músicas", "Receitas", "Profissionais"].map((item) => (
+                {["Home", "Biblioteca", "Contato", "Musicas", "Receitas"].map((item) => (
                     <li key={item} className='border-b-2 p-4 hover:bg-gray-100'>
                         <Link href={`/${item.toLowerCase()}`} onClick={onClose} className="w-full h-full block">
                             {item}

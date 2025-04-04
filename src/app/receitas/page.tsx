@@ -22,7 +22,7 @@ export default function Receitas() {
         <div className="flex flex-row gap-24 justify-center">
             <div className="-mt-12">
                 <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Estou me sentindo triste..." sendButton={true} marginTop="mt-32" marginLeft="" />
-                <div className="-mt-72">
+                <div className="-mt-14">
                     <Carousel items={items} />
                 </div>
             </div>

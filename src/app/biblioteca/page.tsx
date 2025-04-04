@@ -20,7 +20,7 @@ export default function Biblioteca() {
     return (
         <div>
             <InputField emotions={false} inputWidth="w-[600px]" width="w-[600px]" marginLeft="ml-[650px]" marginTop="mt-10" placeholder="Pesquise um livro..." sendButton={true} />
-            <div className="-mt-64">
+            <div className="">
                 <Carousel items={items} />
             </div>
 
