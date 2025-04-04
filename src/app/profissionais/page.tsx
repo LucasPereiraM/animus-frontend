@@ -7,7 +7,6 @@ type InfoFieldProps = {
     width: string;
 }
 
-
 const InfoField = ({ field, info, width }: InfoFieldProps) => {
     return (
         <div className={`p-5 rounded-lg shadow-md h-full border-2 hover:bg-gray-50 ${width}`}>

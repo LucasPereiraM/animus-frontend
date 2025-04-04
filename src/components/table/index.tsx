@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import useFetchData from "@/hooks/useFetchData";
+import useFetchData from "@/hooks/useFetchCvvData";
 
 type Item = {
   email: string;
