@@ -1,6 +1,5 @@
 "use client";
 import Image from 'next/image';
-import { useState } from 'react';
 
 interface InputFieldProps {
     emotions: boolean;
@@ -10,6 +9,8 @@ interface InputFieldProps {
     sendButton: boolean;
     marginTop?: string;
     marginLeft?: string;
+    value: string;
+    onChange: (value: string) => void;
 }
 
 const SendButton = () => {
@@ -17,36 +18,35 @@ const SendButton = () => {
         <button className="absolute right-4 flex items-center">
             <Image src="/icons/arrow.svg" alt="menu de navegação" className='mt-2' width={61} height={61} />
         </button>
-    )
-}
+    );
+};
 
 const Emotions = () => {
     return (
         <div className="flex gap-2 self-end mt-4 mr-72">
-            <button>
-                <Image src="/icons/angry.svg" alt="emoção - raiva" width={53} height={53} />
-            </button>
-            <button>
-                <Image src="/icons/sad.svg" alt="emoção - tristeza" width={53} height={53} />
-            </button>
-            <button>
-                <Image src="/icons/happy.svg" alt="emoção - felicidade" width={53} height={53} />
-            </button>
-            <button>
-                <Image src="/icons/euphoric.svg" alt="emoção - euforia" width={53} height={53} />
-            </button>
-            <button>
-                <Image src="/icons/love.svg" alt="emoção - apaixonado" width={53} height={53} />
-            </button>
+            <button><Image src="/icons/angry.svg" alt="emoção - raiva" width={53} height={53} /></button>
+            <button><Image src="/icons/sad.svg" alt="emoção - tristeza" width={53} height={53} /></button>
+            <button><Image src="/icons/happy.svg" alt="emoção - felicidade" width={53} height={53} /></button>
+            <button><Image src="/icons/euphoric.svg" alt="emoção - euforia" width={53} height={53} /></button>
+            <button><Image src="/icons/love.svg" alt="emoção - apaixonado" width={53} height={53} /></button>
         </div>
     );
 };
 
-const InputField = ({ emotions, width, inputWidth, placeholder, sendButton, marginTop, marginLeft }: InputFieldProps) => {
-    const [inputValue, setInputValue] = useState('');
+const InputField = ({
+    emotions,
+    width,
+    inputWidth,
+    placeholder,
+    sendButton,
+    marginTop,
+    marginLeft,
+    value,
+    onChange,
+}: InputFieldProps) => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value);
+        onChange(event.target.value);
     };
 
     return (
@@ -56,7 +56,7 @@ const InputField = ({ emotions, width, inputWidth, placeholder, sendButton, marg
                     <input
                         type="text"
                         className={`${inputWidth} h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg`}
-                        value={inputValue}
+                        value={value}
                         onChange={handleInputChange}
                         placeholder={placeholder}
                     />

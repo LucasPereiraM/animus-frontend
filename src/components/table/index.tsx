@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import useFetchData from "@/hooks/useFetchCvvData";
+import useFetchCvvData from "@/hooks/useFetchCvvData";
 
 type Item = {
   email: string;
@@ -19,7 +19,7 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ estadoSelecionado, cidadeSelecionada }) => {
-  const { data, loading, error } = useFetchData(API_URL);
+  const { data, loading, error } = useFetchCvvData(API_URL);
   const [displayed, setDisplayed] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Table: React.FC<TableProps> = ({ estadoSelecionado, cidadeSelecionada }) =
     if (estadoSelecionado) {
       filteredData = filteredData.filter((item) => item.estado === estadoSelecionado);
     }
-    
+
     if (cidadeSelecionada) {
       filteredData = filteredData.filter((item) => item.cidade === cidadeSelecionada);
     }
