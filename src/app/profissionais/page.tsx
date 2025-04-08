@@ -1,3 +1,5 @@
+"use client"
+
 import InputField from "@/components/inputField";
 import Image from "next/image";
 import { useState } from "react";
