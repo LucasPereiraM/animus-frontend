@@ -119,10 +119,8 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
     const service = new google.maps.places.PlacesService(map);
     
     try {
-      // Clear existing markers
       clearMarkers();
 
-      // Search for different types of mental health services
       const keywords = [
         'psicólogo',
         'psiquiatra',
@@ -138,7 +136,6 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
       const allResults = await Promise.all(searchPromises);
       const uniquePlaces: Record<string, google.maps.places.PlaceResult> = {};
 
-      // Deduplicate places by place_id
       allResults.flat().forEach(place => {
         if (place.place_id && !uniquePlaces[place.place_id]) {
           uniquePlaces[place.place_id] = place;
@@ -257,7 +254,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
   }, [apiKey]);
 
   return (
-    <div className="h-[500px] mt-5">
+    <div className="h-[500px] mt-20">
       <div ref={mapRef} className="h-full w-full" />
     </div>
   );

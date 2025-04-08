@@ -35,8 +35,9 @@ const Profissionais = () => {
           <p>
             Aqui você pode buscar psicólogos próximos à sua localização. Utilize o mapa abaixo para encontrar profissionais na sua área.
           </p>
-          <Map apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY  || ''} />
-
+          <div className="mt-10">
+            <Map apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} />
+          </div>
         </main>
       </div>
     </>

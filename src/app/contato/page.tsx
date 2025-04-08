@@ -26,7 +26,7 @@ export default function Contato() {
   const [janelaAtual, setJanelaAtual] = useState<"cvv" | "profissionais" | "mapa">("cvv");
 
   return (
-    <div className="flex flex-col justify-center px-40">
+    <div className="flex flex-col justify-center px-40 mb-24">
       <div className="flex flex-row mt-20 mb-10 gap-12 justify-center items-center">
         <ActionButton
           image="/icons/cvvIcon.svg"
