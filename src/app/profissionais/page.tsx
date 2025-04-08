@@ -76,7 +76,6 @@ export default function Profissionais() {
                     </div>
                 </div>
             )}
-
             <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
                 {loading && <p>Carregando...</p>}
                 {error && <p>{error}</p>}
