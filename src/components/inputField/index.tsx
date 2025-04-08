@@ -11,6 +11,7 @@ interface InputFieldProps {
     marginLeft?: string;
     value: string;
     onChange: (value: string) => void;
+    isUf?: boolean; // ✅ nova prop para ativar filtro de UF
 }
 
 const SendButton = () => {
@@ -43,10 +44,17 @@ const InputField = ({
     marginLeft,
     value,
     onChange,
+    isUf = false, // ✅ valor padrão é false
 }: InputFieldProps) => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(event.target.value);
+        let input = event.target.value;
+
+        if (isUf) {
+            input = input.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 2);
+        }
+
+        onChange(input);
     };
 
     return (
