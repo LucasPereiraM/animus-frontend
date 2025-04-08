@@ -254,7 +254,9 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
   }, [apiKey]);
 
   return (
-    <div className="h-[500px] mt-20">
+    <div className="h-[700px] mt-20 mb-20 flex flex-col gap-5">
+      <h1 className='text-4xl text-gray-600'>Profissionais na sua área</h1>
+      <p className='mb-10'>Veja detalhes sobre a localização de profissionais da saúde mental próximos.</p>
       <div ref={mapRef} className="h-full w-full" />
     </div>
   );

@@ -53,8 +53,11 @@ export default function Profissionais() {
         <div className="flex flex-col gap-10 mb-20">
             <div className="flex flex-row justify-center items-center">
                 <div className="flex flex-col">
-                    <h2 className="text-4xl mt-10 mb-16 ml-2 text-gray-600">Pesquise um Profissional</h2>
-                    <div className="flex flex-row gap-10 h-[150px]">
+                    <div className="flex flex-col mb-20 mt-10 -ml-16 gap-5">
+                        <h2 className="text-4xl mt-10 text-gray-600">Pesquise um Profissional</h2>
+                        <p>por Nome, número de Conselho Regional de Medicina (CRM) ou Unidade Federativa (UF)</p>
+                    </div>
+                    <div className="flex flex-row gap-10 h-[150px] -ml-16">
                         <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Nome do Médico" sendButton={false} value={nome} onChange={setNome} />
                         <InputField emotions={false} inputWidth="w-[150px]" width="w-[200px]" placeholder="UF" sendButton={false} value={uf} onChange={setUf} isUf />
                         <InputField emotions={false} inputWidth="w-[400px]" width="w-[450px]" placeholder="CRM" sendButton={false} value={crm} onChange={setCrm} />
