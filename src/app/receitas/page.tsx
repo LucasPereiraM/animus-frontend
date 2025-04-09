@@ -1,6 +1,7 @@
 "use client"
 import InputField from "@/components/inputField";
 import Carousel from "@/components/carousel";
+import { useState } from "react";
 
 interface Item {
     id: number;
@@ -18,10 +19,12 @@ const items: Item[] = [
 
 
 export default function Receitas() {
+    var [inputValue,setInputValue] = useState('');
+
     return (
         <div className="flex flex-row gap-24 justify-center">
             <div className="-mt-12">
-                <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Estou me sentindo triste..." sendButton={true} marginTop="mt-32" marginLeft="" />
+                <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Estou me sentindo triste..." sendButton={true} marginTop="mt-32" value={inputValue} onChange={setInputValue} />
                 <div className="-mt-14">
                     <Carousel items={items} />
                 </div>

@@ -1,6 +1,7 @@
 "use client"
 import Carousel from "@/components/carousel";
 import InputField from "@/components/inputField";
+import { useState } from "react";
 
 interface Item {
     id: number;
@@ -17,9 +18,11 @@ const items: Item[] = [
 ];
 
 export default function Biblioteca() {
+
+    var [searchValue, setSearchValue] = useState("");
     return (
         <div>
-            <InputField emotions={false} inputWidth="w-[600px]" width="w-[600px]" marginLeft="ml-[650px]" marginTop="mt-10" placeholder="Pesquise um livro..." sendButton={true} />
+            <InputField emotions={false} inputWidth="w-[600px]" width="w-[600px]" marginLeft="ml-[650px]" marginTop="mt-10" placeholder="Pesquise um livro..." sendButton={true} value={searchValue} onChange={setSearchValue}/>
             <div className="">
                 <Carousel items={items} />
             </div>

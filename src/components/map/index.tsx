@@ -9,7 +9,6 @@ interface MapProps {
   apiKey: string;
 }
 
-// Track if the script is already loading
 let isLoadingScript = false;
 let scriptLoaded = false;
 
@@ -21,7 +20,6 @@ const loadGoogleMapsScript = (apiKey: string): Promise<void> => {
     }
 
     if (isLoadingScript) {
-      // Wait for the existing script to load
       const checkIfLoaded = () => {
         if (scriptLoaded) {
           resolve();
