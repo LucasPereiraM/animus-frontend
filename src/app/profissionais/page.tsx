@@ -13,6 +13,16 @@ type InfoFieldProps = {
     width: string;
 };
 
+type Medico = {
+    nomeMedico: string;
+    especialidade: string;
+    crm: string;
+    uf: string;
+    endereco: string;
+    telefone: string;
+};
+
+
 const InfoField = ({ field, info, width }: InfoFieldProps) => {
     return (
         <div className={`p-5 rounded-lg shadow-md h-full border-2 hover:bg-gray-50 ${width}`}>
@@ -30,7 +40,7 @@ export default function Profissionais() {
     const [crm, setCrm] = useState('');
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<any | null>(null);
+    const [selectedItem, setSelectedItem] = useState<Medico | null>(null);
 
     const { data, loading, error, fetchData } = useFetchCfmData();
 
@@ -44,7 +54,7 @@ export default function Profissionais() {
         setModalOpen(true);
     };
 
-    const handleSelectItem = (item: any) => {
+    const handleSelectItem = (item: Medico) => {
         setSelectedItem(item);
         setModalOpen(false);
     };

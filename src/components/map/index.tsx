@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 
 interface Location {
   lat: number;
@@ -57,51 +57,57 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
   const defaultLocation: Location = { lat: -18.7238, lng: -47.5241 };
   const markersRef = useRef<google.maps.Marker[]>([]);
 
-  const handleLocationError = (
-    browserHasGeolocation: boolean,
-    map: google.maps.Map,
-    pos: Location
-  ) => {
-    const infoWindow = new google.maps.InfoWindow();
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-      browserHasGeolocation
-        ? "Erro: O serviço de geolocalização falhou."
-        : "Erro: Seu navegador não suporta geolocalização."
-    );
-    infoWindow.open(map);
-  };
+  const handleLocationError = useCallback(
+    (
+      browserHasGeolocation: boolean,
+      map: google.maps.Map,
+      pos: Location
+    ) => {
+      const infoWindow = new google.maps.InfoWindow();
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(
+        browserHasGeolocation
+          ? "Erro: O serviço de geolocalização falhou."
+          : "Erro: Seu navegador não suporta geolocalização."
+      );
+      infoWindow.open(map);
+    },
+    []
+  );
 
-  const searchNearbyPlaces = (
-    service: google.maps.places.PlacesService,
-    location: Location,
-    map: google.maps.Map,
-    keyword: string
-  ): Promise<google.maps.places.PlaceResult[]> => {
-    return new Promise((resolve) => {
-      const request: google.maps.places.PlaceSearchRequest = {
-        location,
-        radius: 4000,
-        type: 'health',
-        keyword: keyword
-      };
+  const searchNearbyPlaces = useCallback(
+    (
+      service: google.maps.places.PlacesService,
+      location: Location,
+      map: google.maps.Map,
+      keyword: string
+    ): Promise<google.maps.places.PlaceResult[]> => {
+      return new Promise((resolve) => {
+        const request: google.maps.places.PlaceSearchRequest = {
+          location,
+          radius: 4000,
+          type: 'health',
+          keyword: keyword
+        };
 
-      service.nearbySearch(request, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-          resolve(results);
-        } else {
-          resolve([]);
-        }
+        service.nearbySearch(request, (results, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+            resolve(results);
+          } else {
+            resolve([]);
+          }
+        });
       });
-    });
-  };
+    },
+    []
+  );
 
-  const clearMarkers = () => {
+  const clearMarkers = useCallback(() => {
     markersRef.current.forEach(marker => marker.setMap(null));
     markersRef.current = [];
-  };
+  }, []);
 
-  const initMap = async (position: GeolocationPosition) => {
+  const initMap = useCallback(async (position: GeolocationPosition) => {
     if (!mapRef.current) return;
 
     const minhaLocalizacao: Location = {
@@ -115,7 +121,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
     });
 
     const service = new google.maps.places.PlacesService(map);
-    
+
     try {
       clearMarkers();
 
@@ -127,7 +133,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
         'clínica psicológica'
       ];
 
-      const searchPromises = keywords.map(keyword => 
+      const searchPromises = keywords.map(keyword =>
         searchNearbyPlaces(service, minhaLocalizacao, map, keyword)
       );
 
@@ -194,7 +200,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
                 if (placeDetails.photos && placeDetails.photos.length > 0) {
                   contentString += `
                     <div style="margin: 8px 0;">
-                      <img src="${placeDetails.photos[0].getUrl({maxWidth: 200, maxHeight: 150})}" 
+                      <img src="${placeDetails.photos[0].getUrl({ maxWidth: 200, maxHeight: 150 })}" 
                            alt="Foto do local" style="width: 100%; max-width: 200px; height: auto;">
                     </div>
                   `;
@@ -208,17 +214,16 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
           );
         });
       });
-
     } catch (error) {
       console.error("Erro na pesquisa:", error);
     }
-  };
+  }, [clearMarkers, searchNearbyPlaces]);
 
   useEffect(() => {
     const initializeMap = async () => {
       try {
         await loadGoogleMapsScript(apiKey);
-        
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             initMap,
@@ -249,7 +254,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
     return () => {
       clearMarkers();
     };
-  }, [apiKey]);
+  }, [apiKey, clearMarkers, handleLocationError, initMap]);
 
   return (
     <div className="h-[700px] mt-20 mb-20 flex flex-col gap-5">

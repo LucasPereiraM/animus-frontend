@@ -54,7 +54,7 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
   useEffect(() => {
     if (estadoSelecionado) {
       const cidadesFiltradas = Object.entries(dados || {})
-        .filter(([_, item]) => item.estado === estadoSelecionado)
+        .filter(([, item]) => item.estado === estadoSelecionado)
         .map(([id, item]) => ({ id, nome: item.cidade }));
 
       setCidades(cidadesFiltradas);

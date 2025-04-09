@@ -19,7 +19,7 @@ const items: Item[] = [
 
 
 export default function Receitas() {
-    var [inputValue,setInputValue] = useState('');
+    const [inputValue,setInputValue] = useState('');
 
     return (
         <div className="flex flex-row gap-24 justify-center">
