@@ -19,7 +19,7 @@ const items: Item[] = [
 
 export default function Biblioteca() {
 
-    var [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState("");
     return (
         <div>
             <InputField emotions={false} inputWidth="w-[600px]" width="w-[600px]" marginLeft="ml-[650px]" marginTop="mt-10" placeholder="Pesquise um livro..." sendButton={true} value={searchValue} onChange={setSearchValue}/>
