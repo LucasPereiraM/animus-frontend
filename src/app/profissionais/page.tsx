@@ -94,6 +94,7 @@ export default function Profissionais() {
                 {error && <p>{error}</p>}
                 {!loading && !error && (
                     <ResultsTable data={data} onSelect={handleSelectItem} />
+                    //teste
                 )}
             </Modal>
         </div>
