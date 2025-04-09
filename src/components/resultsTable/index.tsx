@@ -1,3 +1,5 @@
+import Medico from "@/app/profissionais/page"
+
 interface ResultItem {
     nomeMedico: string;
     especialidade: string;

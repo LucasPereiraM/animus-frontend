@@ -57,7 +57,7 @@ const useFetchCvvData = (url: string) => {
     };
 
     fetchData();
-  }, [url]); // <- url como dependência está correta
+  }, [url]);
 
   return { data, loading, error };
 };
