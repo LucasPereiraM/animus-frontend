@@ -5,6 +5,8 @@ interface ResultItem {
     especialidade: string;
     crm: string;
     uf: string;
+    telefone: string;
+    endereco: string;
   }
   
   type Props = {

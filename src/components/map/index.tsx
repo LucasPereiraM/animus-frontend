@@ -174,7 +174,13 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
                   <div style="max-width: 300px;">
                     <strong style="font-size: 16px;">${placeDetails.name}</strong><br>
                     <div style="margin: 8px 0;">
-                      ${placeDetails.formatted_address || ''}<br>
+                    <a href="https://google.com/maps/search/?api=1&query=${encodeURIComponent(placeDetails.formatted_address || '')}" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style="color: #2679bd; text-decoration: underline;">
+                      ${placeDetails.formatted_address || ''}
+                    </a>
+                    <br>
                       ${placeDetails.formatted_phone_number ? `📞 ${placeDetails.formatted_phone_number}<br>` : ''}
                       ${placeDetails.rating ? `⭐ ${placeDetails.rating} / 5<br>` : 'Sem avaliação<br>'}
                     </div>
