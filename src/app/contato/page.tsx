@@ -52,9 +52,9 @@ export default function Contato() {
 
             {janelaAtual === "cvv" && (
                 <>  <div className="flex flex-col gap-5 ml-2">
-                        <h1 className="text-4xl mt-20 text-gray-600">Procure Centros de Valorização a Vida</h1>
-                        <p className="mb-10">Por estado e cidade.</p>
-                    </div>
+                    <h1 className="text-4xl mt-20 text-gray-600">Procure Centros de Valorização a Vida</h1>
+                    <p className="mb-10 text-lg">Por estado e cidade.</p>
+                </div>
 
                     <SelectStateCity
                         estadoSelecionado={estadoSelecionado}
