@@ -47,7 +47,10 @@ export default function Carousel({ items, onBookClick }: CarouselProps) {
               key={index}
               className={`flex-shrink-0 w-1/3 ${index === 1 ? 'scale-110' : 'scale-100'} transition-transform relative`}
             >
-              <div className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col relative">
+              <div 
+                className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col relative h-[400px] justify-between cursor-pointer"
+                onClick={() => onBookClick(livro)}
+              >
                 <button className="absolute -ml-10 -mt-5 rounded-md z-30">
                   <a href={livro.link_download} target="_blank" rel="noopener noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -57,10 +60,7 @@ export default function Carousel({ items, onBookClick }: CarouselProps) {
                   </a>
                 </button>
 
-                <div
-                  className="w-full h-48 flex items-center justify-center cursor-pointer"
-                  onClick={() => onBookClick(livro)}
-                >
+                <div className="w-full h-48 flex items-center justify-center">
                   <img
                     src={
                       !livro.imagem_capa || livro.imagem_capa === "null"
@@ -71,13 +71,13 @@ export default function Carousel({ items, onBookClick }: CarouselProps) {
                     className="max-w-full max-h-full object-contain rounded-t-lg"
                   />
                 </div>
-              </div>
 
-              <div className="text-center w-full mt-6">
-                <h3 className="text-lg font-normal text-primary">{livro.titulo}</h3>
-                {livro.sentimentos && (
-                  <p className="text-sm text-gray-600">{livro.sentimentos.join(", ")}</p>
-                )}
+                <div className="text-center w-full mt-6">
+                  <h3 className="text-lg font-normal text-primary">{livro.titulo}</h3>
+                  {livro.sentimentos && (
+                    <p className="text-sm text-gray-600">{livro.sentimentos.join(", ")}</p>
+                  )}
+                </div>
               </div>
             </div>
           ))}
