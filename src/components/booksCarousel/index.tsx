@@ -5,9 +5,10 @@ import { Livro } from '@/hooks/useFetchBookData';
 type CarouselProps = {
   items: Livro[];
   onBookClick: (livro: Livro) => void;
+  downloadIcon?: boolean;
 };
 
-export default function Carousel({ items, onBookClick }: CarouselProps) {
+export default function BooksCarousel({ items, onBookClick, downloadIcon }: CarouselProps) {
   const [startIndex, setStartIndex] = useState(0);
 
   const goLeft = () => {
@@ -51,6 +52,7 @@ export default function Carousel({ items, onBookClick }: CarouselProps) {
                 className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col relative h-[400px] justify-between cursor-pointer"
                 onClick={() => onBookClick(livro)}
               >
+                {downloadIcon &&
                 <button className="absolute -ml-10 -mt-5 rounded-md z-30">
                   <a href={livro.link_download} target="_blank" rel="noopener noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -58,8 +60,7 @@ export default function Carousel({ items, onBookClick }: CarouselProps) {
                       <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0" />
                     </svg>
                   </a>
-                </button>
-
+                </button>}
                 <div className="w-full h-48 flex items-center justify-center">
                   <img
                     src={

@@ -1,9 +1,9 @@
 "use client";
-import Carousel from "@/components/carousel";
+import BooksCarousel from "@/components/booksCarousel";
 import InputField from "@/components/inputField";
 import { useState, useEffect } from "react";
 import useFetchBookData, { Livro } from "@/hooks/useFetchBookData";
-import GridLayout from "@/components/gridLayout";
+import GridLayout from "@/components/booksGridLayout";
 
 export default function Biblioteca() {
     const { data, loading, error, fetchData } = useFetchBookData();
@@ -53,7 +53,7 @@ export default function Biblioteca() {
                             <GridLayout items={data.map(item => item.livro)} onBookClick={setSelectedBook} />
                         </div>
                     ) : (
-                        <Carousel items={data.map(item => item.livro)} onBookClick={setSelectedBook} />
+                        <BooksCarousel items={data.map(item => item.livro)} onBookClick={setSelectedBook} downloadIcon />
                     )}
 
                     {selectedBook && (

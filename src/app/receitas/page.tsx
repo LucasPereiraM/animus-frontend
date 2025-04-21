@@ -1,35 +1,112 @@
-"use client"
+"use client";
 import InputField from "@/components/inputField";
-import Carousel from "@/components/carousel";
-import { useState } from "react";
-
-interface Item {
-    id: number;
-    title: string;
-    subtitle?: string;
-    img: string;
-}
-
-const items: Item[] = [
-    { id: 1, title: 'Chá de Camomila com Mel', subtitle: "emoção 1", img: '/image 4.svg' },
-    { id: 2, title: 'Chá de Hortelã', subtitle: "emoção 2", img: '/image 5.svg' },
-    { id: 3, title: 'Sopa de Legumes', subtitle: "emoção 3", img: '/image 6.svg' },
-    { id: 4, title: 'Saúde Mental e Atenção Psicosocial', subtitle: "emoção 4", img: '/receita4.jpg' },
-];
-
+import RecipesCarousel from "@/components/recipesCarousel";
+import RecipesGridLayout from "@/components/recipesGridLayout";
+import { useState, useEffect, useRef } from "react";
+import useFetchReceitaData, { Receita } from "@/hooks/useFetchRecipeData";
 
 export default function Receitas() {
-    const [inputValue,setInputValue] = useState('');
+  const { data, loading, error, fetchData } = useFetchReceitaData();
+  const [inputValue, setInputValue] = useState("");
+  const [selectedReceita, setSelectedReceita] = useState<Receita | null>(null);
+  const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
 
-    return (
-        <div className="flex flex-row gap-24 justify-center">
-            <div className="-mt-12">
-                <InputField emotions={true} width="w-[1200px]" inputWidth="w-[1150px]" placeholder="Estou me sentindo triste..." sendButton={true} marginTop="mt-32" value={inputValue} onChange={setInputValue} />
-                <div className="-mt-14">
-                    <Carousel items={items} />
-                </div>
+  // Criando a referência para a seção de detalhes
+  const receitaDetailsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetchData("https://maoamiga.up.railway.app/get_in_general_recipe");
+  }, []);
+
+  // Função para rolar até a seção de detalhes
+  const handleRecipeClick = (receita: Receita) => {
+    setSelectedReceita(receita);
+
+    if (receitaDetailsRef.current) {
+      receitaDetailsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center mt-10">
+      <InputField
+        emotions={true}
+        width="w-[600px]"
+        inputWidth="w-[650px]"
+        placeholder="Estou me sentindo triste..."
+        sendButton={true}
+        marginTop="mt-10"
+        value={inputValue}
+        onChange={setInputValue}
+      />
+
+      {loading && <p className="mt-10 text-gray-500">Carregando receitas...</p>}
+      {error && <p className="mt-10 text-red-500">{error}</p>}
+
+      {!loading && !error && data.length > 0 && (
+        <>
+          <div className="flex justify-center my-6 mt-20">
+            <button
+              onClick={() => setViewMode(viewMode === "grid" ? "carousel" : "grid")}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+            >
+            {viewMode === "grid" ?
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-collection-fill" viewBox="0 0 16 16">
+                    <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1"/>
+                </svg> :
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-grid-3x2-gap-fill" viewBox="0 0 16 16">
+                    <path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
+                </svg>}
+            </button>
+          </div>
+
+          {viewMode === "grid" ? (
+            <div className="h-[600px] overflow-y-auto mx-auto w-fit">
+              <RecipesGridLayout items={data.map(item => item.receita)} onRecipeClick={handleRecipeClick} />
             </div>
+          ) : (
+            <div className="w-full flex justify-center">
+              <RecipesCarousel items={data.map(item => item.receita)} onRecipeClick={handleRecipeClick} />
+            </div>
+          )}
+        </>
+      )}
 
+      {selectedReceita && (
+        <div
+          ref={receitaDetailsRef}
+          className="mt-20 mb-20 flex flex-col items-center"
+        >
+          <h3 className="text-3xl text-primary mb-4 w-[500px] text-center">
+            {selectedReceita.nome_receita}
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Sentimento relacionado: {selectedReceita.sentimento}
+          </p>
+          <img
+            src={selectedReceita.foto_receita}
+            alt={`Foto da receita ${selectedReceita.nome_receita}`}
+            className="max-w-xs md:max-w-md lg:max-w-lg max-h-[500px] object-contain rounded-lg shadow-md mb-10"
+          />
+          <div className="w-[500px] text-center">
+            <h4 className="text-xl font-semibold mb-2">Ingredientes</h4>
+            <ul className="mb-6 list-disc list-inside">
+              {selectedReceita.ingredientes.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <h4 className="text-xl font-semibold mb-2">Modo de preparo</h4>
+            <ol className="list-decimal list-inside text-left">
+              {selectedReceita.preparo.map((step, index) => (
+                <li key={index} className="text-center p-2">{step}</li>
+              ))}
+            </ol>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 }
