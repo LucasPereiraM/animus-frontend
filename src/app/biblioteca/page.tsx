@@ -1,7 +1,7 @@
 "use client";
 import BooksCarousel from "@/components/booksCarousel";
 import InputField from "@/components/inputField";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useFetchBookData, { Livro } from "@/hooks/useFetchBookData";
 import GridLayout from "@/components/booksGridLayout";
 
@@ -11,25 +11,39 @@ export default function Biblioteca() {
   const [selectedBook, setSelectedBook] = useState<Livro | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
 
+  const bookDetailsRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     fetchData("https://maoamiga.up.railway.app/get_in_general_book");
   }, []);
 
-  return (
-        <div className=" flex flex-col items-center">
-            <InputField
-                emotions={false}
-                inputWidth="w-[600px]"
-                width="w-[600px]"
-                marginLeft=""
-                marginTop="mt-10"
-                placeholder="Pesquise um livro..."
-                sendButton={true}
-                value={searchValue}
-                onChange={setSearchValue}
-        />
+  const handleBookClick = (book: Livro) => {
+    setSelectedBook(book);
 
-      <div className="flex flex-col mt-20 mb-10 -ml-14">
+    if (bookDetailsRef.current) {
+      bookDetailsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex justify-center items-center">
+        <InputField
+          emotions={true}
+          inputWidth="w-[1000px]"
+          width="w-full"
+          marginLeft=""
+          marginTop="mt-10"
+          placeholder="Pesquise um livro..."
+          sendButton={true}
+          value={searchValue}
+          onChange={setSearchValue}
+        />
+      </div>
+      <div className="flex flex-col mt-20 mb-10">
         <h2 className="text-4xl text-gray-600">Escolha um livro</h2>
         <p className="text-lg">Clique no livro para abrir a exibição, baixe ou busque um livro...</p>
       </div>
@@ -57,15 +71,15 @@ export default function Biblioteca() {
           </div>
 
           {viewMode === "grid" ? (
-            <div className="h-[600px] overflow-y-auto mx-auto w-fit">
-              <GridLayout items={data.map(item => item.livro)} onBookClick={setSelectedBook} />
+            <div className="h-[800px] overflow-y-auto mx-auto w-fit mb-20">
+              <GridLayout items={data.map(item => item.livro)} onBookClick={handleBookClick} />
             </div>
           ) : (
-            <BooksCarousel items={data.map(item => item.livro)} onBookClick={setSelectedBook} downloadIcon />
+            <BooksCarousel items={data.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
           )}
 
           {selectedBook && (
-            <div className="flex justify-center mt-20 mb-20 flex-col items-center">
+            <div ref={bookDetailsRef} className="flex justify-center mt-20 mb-20 flex-col items-center">
               <h3 className="text-3xl text-primary mb-4 w-[500px] text-center">
                 {selectedBook.titulo}
               </h3>

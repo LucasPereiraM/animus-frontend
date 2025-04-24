@@ -11,14 +11,12 @@ export default function Receitas() {
   const [selectedReceita, setSelectedReceita] = useState<Receita | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
 
-  // Criando a referência para a seção de detalhes
   const receitaDetailsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchData("https://maoamiga.up.railway.app/get_in_general_recipe");
   }, []);
 
-  // Função para rolar até a seção de detalhes
   const handleRecipeClick = (receita: Receita) => {
     setSelectedReceita(receita);
 
@@ -32,16 +30,23 @@ export default function Receitas() {
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <InputField
-        emotions={true}
-        width="w-[600px]"
-        inputWidth="w-[650px]"
-        placeholder="Estou me sentindo triste..."
-        sendButton={true}
-        marginTop="mt-10"
-        value={inputValue}
-        onChange={setInputValue}
-      />
+      <div className="flex justify-center items-center">
+        <InputField
+          emotions={true}
+          width="w-full"
+          inputWidth="w-[1000px]"
+          placeholder="Estou me sentindo triste..."
+          sendButton={true}
+          marginTop="mt-10"
+          value={inputValue}
+          onChange={setInputValue}
+        />
+      </div>
+      <div className="flex flex-col mt-20 mb-10">
+        <h2 className="text-4xl text-gray-600">Escolha uma receita</h2>
+        <p className="text-lg text-wrap  w-[500px]">Clique na receita para abrir os ingredientes e modo de preparo ou busque um livro...</p>
+      </div>
+
 
       {loading && <p className="mt-10 text-gray-500">Carregando receitas...</p>}
       {error && <p className="mt-10 text-red-500">{error}</p>}
@@ -65,11 +70,11 @@ export default function Receitas() {
           </div>
 
           {viewMode === "grid" ? (
-            <div className="h-[600px] overflow-y-auto mx-auto w-fit">
+            <div className="h-[800px] overflow-y-auto mx-auto w-fit mb-20">
               <RecipesGridLayout items={data.map(item => item.receita)} onRecipeClick={handleRecipeClick} />
             </div>
           ) : (
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center mb-20">
               <RecipesCarousel items={data.map(item => item.receita)} onRecipeClick={handleRecipeClick} />
             </div>
           )}

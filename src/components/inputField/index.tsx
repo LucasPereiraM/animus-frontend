@@ -24,7 +24,7 @@ const SendButton = () => {
 
 const Emotions = () => {
     return (
-        <div className="flex gap-2 self-end mt-4 mr-72">
+        <div className="flex gap-2 self-end mt-4">
             <button><Image src="/icons/angry.svg" alt="emoção - raiva" width={53} height={53} /></button>
             <button><Image src="/icons/sad.svg" alt="emoção - tristeza" width={53} height={53} /></button>
             <button><Image src="/icons/happy.svg" alt="emoção - felicidade" width={53} height={53} /></button>
