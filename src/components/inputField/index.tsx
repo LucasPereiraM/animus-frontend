@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface InputFieldProps {
     emotions: boolean;
@@ -12,6 +13,14 @@ interface InputFieldProps {
     value: string;
     onChange: (value: string) => void;
     isUf?: boolean;
+    selectedSentiment: string;
+    onSelectSentiment: (s: string) => void;
+}
+
+interface EmotionProps {
+    selectedSentiment: string;
+    onSelectSentiment: (s: string) => void;
+
 }
 
 const SendButton = () => {
@@ -22,14 +31,33 @@ const SendButton = () => {
     );
 };
 
-const Emotions = () => {
+const emotions = [
+    { name: "Raiva", icon: "/icons/angry.svg" },
+    { name: "Tristeza", icon: "/icons/sad.svg" },
+    { name: "Felicidade", icon: "/icons/happy.svg" },
+    { name: "Paixão", icon: "/icons/love.svg" }
+  ];
+
+const Emotions = ({selectedSentiment,onSelectSentiment}:EmotionProps) => {
+
     return (
         <div className="flex gap-2 self-end mt-4">
-            <button><Image src="/icons/angry.svg" alt="emoção - raiva" width={53} height={53} /></button>
-            <button><Image src="/icons/sad.svg" alt="emoção - tristeza" width={53} height={53} /></button>
-            <button><Image src="/icons/happy.svg" alt="emoção - felicidade" width={53} height={53} /></button>
-            <button><Image src="/icons/euphoric.svg" alt="emoção - euforia" width={53} height={53} /></button>
-            <button><Image src="/icons/love.svg" alt="emoção - apaixonado" width={53} height={53} /></button>
+            {emotions.map((emotion) => (
+                <button
+                key={emotion.name}
+                onClick={() => onSelectSentiment(emotion.name)}
+                className={`rounded ${
+                    selectedSentiment === emotion.name ? "ring-2 ring-blue-500" : ""
+                }`}
+                >
+                <Image
+                    src={emotion.icon}
+                    alt={`emoção - ${emotion.name}`}
+                    width={53}
+                    height={53}
+                />
+                </button>
+            ))}
         </div>
     );
 };
@@ -43,6 +71,8 @@ const InputField = ({
     marginTop,
     marginLeft,
     value,
+    selectedSentiment,
+    onSelectSentiment,
     onChange,
     isUf = false,
 }: InputFieldProps) => {
@@ -71,7 +101,7 @@ const InputField = ({
                     {sendButton && <SendButton />}
                 </div>
             </div>
-            {emotions && <Emotions />}
+            {emotions && <Emotions onSelectSentiment={onSelectSentiment} selectedSentiment={selectedSentiment}  />}
         </div>
     );
 };

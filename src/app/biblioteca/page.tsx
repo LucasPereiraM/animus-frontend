@@ -8,6 +8,7 @@ import GridLayout from "@/components/booksGridLayout";
 export default function Biblioteca() {
   const { data, loading, error, fetchData } = useFetchBookData();
   const [searchValue, setSearchValue] = useState("");
+  const [selectedSentiment, setSelectedSentiment] = useState("");
   const [selectedBook, setSelectedBook] = useState<Livro | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
 
@@ -28,6 +29,28 @@ export default function Biblioteca() {
     }
   };
 
+  const normalize = (str: string) =>
+  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  const filteredBooks = data.filter((item) => {
+    const titulo = normalize(item.livro.titulo ?? "");
+  
+    const sentimentos = normalize(
+      (item.livro.sentimentos ?? [])
+        .filter((s): s is string => typeof s === "string")
+        .join(" ")
+    );
+  
+    const matchesText = titulo.includes(normalize(searchValue));
+    const matchesSentiment = selectedSentiment
+      ? sentimentos.includes(normalize(selectedSentiment))
+      : true;
+  
+    return matchesText && matchesSentiment;
+  });
+  
+
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex justify-center items-center">
@@ -38,9 +61,11 @@ export default function Biblioteca() {
           marginLeft=""
           marginTop="mt-10"
           placeholder="Pesquise um livro..."
-          sendButton={true}
+          sendButton={false}
           value={searchValue}
           onChange={setSearchValue}
+          selectedSentiment = {selectedSentiment}
+          onSelectSentiment = {setSelectedSentiment}
         />
       </div>
       <div className="flex flex-col mt-20 mb-10">
@@ -72,10 +97,10 @@ export default function Biblioteca() {
 
           {viewMode === "grid" ? (
             <div className="h-[800px] overflow-y-auto mx-auto w-fit mb-20">
-              <GridLayout items={data.map(item => item.livro)} onBookClick={handleBookClick} />
+              <GridLayout items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} />
             </div>
           ) : (
-            <BooksCarousel items={data.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
+            <BooksCarousel items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
           )}
 
           {selectedBook && (
