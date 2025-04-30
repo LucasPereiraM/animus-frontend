@@ -83,7 +83,7 @@ export default function Biblioteca() {
       </div>
       <div className="flex flex-col mt-20 mb-10">
         <h2 className="text-4xl text-gray-600">Escolha um livro</h2>
-        <p className="text-lg">Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...</p>
+        <p className="text-lg text-wrap  w-[520px]">Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...</p>
       </div>
 
       {loading && <p className="text-center mt-10">Carregando...</p>}

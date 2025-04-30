@@ -101,7 +101,7 @@ export default function Receitas() {
       </div>
       <div className="flex flex-col mt-20 mb-10">
         <h2 className="text-4xl text-gray-600">Escolha uma receita</h2>
-        <p className="text-lg text-wrap  w-[500px]">Clique na receita para abrir os ingredientes e modo de preparo ou busque um livro...</p>
+        <p className="text-lg text-wrap  w-[530px]">Clique na receita para abrir os ingredientes e modo de preparo ou busque um livro...</p>
       </div>
 
 
