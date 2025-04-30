@@ -30,30 +30,30 @@ export default function Biblioteca() {
   };
 
   const normalize = (str: string) =>
-  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
   const filteredBooks = data.filter((item) => {
     const titulo = normalize(item.livro.titulo ?? "");
-  
+
     const sentimentos = normalize(
       (item.livro.sentimentos ?? [])
         .filter((s): s is string => typeof s === "string")
         .join(" ")
     );
-  
+
     const matchesText = titulo.includes(normalize(searchValue));
     const matchesSentiment = selectedSentiment
       ? sentimentos.includes(normalize(selectedSentiment))
       : true;
-  
+
     return matchesText && matchesSentiment;
   });
-  
+
 
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <InputField
           emotions={true}
           inputWidth="w-[1000px]"
@@ -64,13 +64,28 @@ export default function Biblioteca() {
           sendButton={false}
           value={searchValue}
           onChange={setSearchValue}
-          selectedSentiment = {selectedSentiment}
-          onSelectSentiment = {setSelectedSentiment}
+          selectedSentiment={selectedSentiment}
+          onSelectSentiment={setSelectedSentiment}
         />
+        {selectedSentiment && (
+          <button
+            onClick={() => setSelectedSentiment("")}
+            className="mt-2 ml-4 text-sm text-primary underline hover:text-blue-600 transition"
+          >
+            <div className="flex flex-row items-center gap-2 ml-64">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-eraser-fill" viewBox="0 0 16 16">
+                <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
+              </svg>
+              Limpar Sentimento
+            </div>
+
+          </button>
+        )}
+
       </div>
       <div className="flex flex-col mt-20 mb-10">
         <h2 className="text-4xl text-gray-600">Escolha um livro</h2>
-        <p className="text-lg">Clique no livro para abrir a exibição, baixe ou busque um livro...</p>
+        <p className="text-lg">Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...</p>
       </div>
 
       {loading && <p className="text-center mt-10">Carregando...</p>}
@@ -85,11 +100,11 @@ export default function Biblioteca() {
             >
               {viewMode === "grid" ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-collection-fill" viewBox="0 0 16 16">
-                  <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1"/>
+                  <path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1" />
                 </svg>
               ) : (
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-grid-3x2-gap-fill" viewBox="0 0 16 16">
-                  <path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
+                  <path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z" />
                 </svg>
               )}
             </button>
@@ -97,7 +112,7 @@ export default function Biblioteca() {
 
           {viewMode === "grid" ? (
             <div className="h-[800px] overflow-y-auto mx-auto w-fit mb-20">
-              <GridLayout items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} />
+              <GridLayout items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
             </div>
           ) : (
             <BooksCarousel items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
