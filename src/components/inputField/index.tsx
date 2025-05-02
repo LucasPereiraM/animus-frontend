@@ -13,54 +13,68 @@ interface InputFieldProps {
     value: string;
     onChange: (value: string) => void;
     isUf?: boolean;
-    selectedSentiment: string;
-    onSelectSentiment: (s: string) => void;
+    selectedSentiment?: string;
+    onSelectSentiment?: (s: string) => void;
+    emotionsMargin?: string;
+    onSendClick?: () => void;
+    onEmotionSelect?: (sentiment: string) => void;
 }
 
 interface EmotionProps {
     selectedSentiment: string;
     onSelectSentiment: (s: string) => void;
-
+    emotionsMargin?: string;
+    onEmotionSelect?: (sentiment: string) => void;
 }
 
-const SendButton = () => {
+interface SendButtonProps {
+    onClick?: () => void;
+}
+
+const SendButton = ({ onClick }: SendButtonProps) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        if (onClick) onClick();
+    };
+
     return (
-        <button className="absolute right-4 flex items-center">
+        <button className="absolute right-4 flex items-center" onClick={handleClick}>
             <Image src="/icons/arrow.svg" alt="menu de navegação" className='mt-2' width={61} height={61} />
         </button>
     );
 };
 
-const emotions = [
+const emotionsList = [
     { name: "Raiva", icon: "/icons/angry.svg" },
     { name: "Tristeza", icon: "/icons/sad.svg" },
     { name: "Felicidade", icon: "/icons/happy.svg" },
     { name: "Paixão", icon: "/icons/love.svg" }
-  ];
+];
 
-const Emotions = ({selectedSentiment,onSelectSentiment}:EmotionProps) => {
-
+const Emotions = ({ selectedSentiment, onSelectSentiment, emotionsMargin, onEmotionSelect }: EmotionProps) => {
     return (
-        <div className="flex gap-2 self-end mt-4">
-            {emotions.map((emotion) => (
+        <div className={`flex gap-2 self-end mt-4 ${emotionsMargin}`}>
+            {emotionsList.map((emotion) => (
                 <button
-                key={emotion.name}
-                onClick={() => onSelectSentiment(emotion.name)}
-                className={`rounded ${
-                    selectedSentiment === emotion.name ? "ring-2 ring-blue-500" : ""
-                }`}
+                    key={emotion.name}
+                    onClick={() => {
+                        onSelectSentiment(emotion.name);
+                        onEmotionSelect?.(emotion.name);
+                    }}
+                    className={`rounded ${selectedSentiment === emotion.name ? "ring-2 ring-blue-500" : ""}`}
                 >
-                <Image
-                    src={emotion.icon}
-                    alt={`emoção - ${emotion.name}`}
-                    width={53}
-                    height={53}
-                />
+                    <Image
+                        src={emotion.icon}
+                        alt={`emoção - ${emotion.name}`}
+                        width={53}
+                        height={53}
+                    />
                 </button>
             ))}
         </div>
     );
 };
+
 
 const InputField = ({
     emotions,
@@ -71,10 +85,13 @@ const InputField = ({
     marginTop,
     marginLeft,
     value,
-    selectedSentiment,
+    selectedSentiment = "",
     onSelectSentiment,
     onChange,
+    emotionsMargin,
     isUf = false,
+    onSendClick,
+    onEmotionSelect,
 }: InputFieldProps) => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +105,7 @@ const InputField = ({
     };
 
     return (
-        <div className={`font-raleway w-1/2 tracking-wide flex flex-col ${marginTop} ${marginLeft}`}>
+        <div className={`font-raleway w-1/2 tracking-wide flex flex-col justify-center items-center ${marginTop} ${marginLeft}`}>
             <div className={`bg-[#EFEFEF] p-5 shadow-md rounded-lg ${width} flex flex-col`}>
                 <div className="relative flex">
                     <input
@@ -98,10 +115,17 @@ const InputField = ({
                         onChange={handleInputChange}
                         placeholder={placeholder}
                     />
-                    {sendButton && <SendButton />}
+                    {sendButton && <SendButton onClick={onSendClick} />}
                 </div>
             </div>
-            {emotions && <Emotions onSelectSentiment={onSelectSentiment} selectedSentiment={selectedSentiment}  />}
+            {emotions && typeof onSelectSentiment === 'function' && (
+                <Emotions
+                    onSelectSentiment={onSelectSentiment}
+                    selectedSentiment={selectedSentiment}
+                    emotionsMargin={emotionsMargin}
+                    onEmotionSelect={onEmotionSelect}
+                />
+            )}
         </div>
     );
 };
