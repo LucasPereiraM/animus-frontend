@@ -56,3 +56,17 @@ body {
 .sidebar a:hover {
   background-color: #ddd;
 }
+
+@layer utilities {
+  .speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 40px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid rgb(255, 255, 255);
+  }
+}
