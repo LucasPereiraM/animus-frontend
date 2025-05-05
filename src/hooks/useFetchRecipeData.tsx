@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export type Receita = {
   foto_receita: string;
@@ -14,7 +14,7 @@ const useFetchReceitaData = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async (url: string) => {
+  const fetchData = useCallback(async (url: string) => {
     setLoading(true);
     setError(null);
 
@@ -41,7 +41,7 @@ const useFetchReceitaData = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return { data, loading, error, fetchData };
 };

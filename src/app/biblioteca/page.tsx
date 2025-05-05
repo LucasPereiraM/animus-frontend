@@ -4,6 +4,7 @@ import InputField from "@/components/inputField";
 import { useState, useEffect, useRef } from "react";
 import useFetchBookData, { Livro } from "@/hooks/useFetchBookData";
 import GridLayout from "@/components/booksGridLayout";
+import Image from "next/image";
 
 export default function Biblioteca() {
   const { data, loading, error, fetchData } = useFetchBookData();
@@ -76,14 +77,15 @@ export default function Biblioteca() {
               </svg>
               Limpar Sentimento
             </div>
-
           </button>
         )}
-
       </div>
+
       <div className="flex flex-col mt-20 mb-10">
         <h2 className="text-4xl text-gray-600">Escolha um livro</h2>
-        <p className="text-lg text-wrap  w-[520px]">Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...</p>
+        <p className="text-lg text-wrap w-[520px]">
+          Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...
+        </p>
       </div>
 
       {loading && <p className="text-center mt-10">Carregando...</p>}
@@ -121,15 +123,24 @@ export default function Biblioteca() {
               <h3 className="text-3xl text-primary mb-4 w-[500px] text-center">
                 {selectedBook.titulo}
               </h3>
+              {selectedBook.nome_autor && (
+                <p className="text-lg text-gray-500 mb-2 italic">
+                  Autor: {selectedBook.nome_autor}
+                </p>
+              )}
               {selectedBook.sentimentos && (
-                <p className="text-gray-600 mb-4">{selectedBook.sentimentos.join(", ")}</p>
+                <p className="text-gray-600 mb-4">
+                  {selectedBook.sentimentos.join(", ")}
+                </p>
               )}
               {selectedBook.imagem_capa && (
                 <div className="w-full flex justify-center">
-                  <img
+                  <Image
                     src={selectedBook.imagem_capa}
                     alt={`Capa do livro ${selectedBook.titulo}`}
-                    className="max-w-xs md:max-w-md lg:max-w-lg max-h-[500px] object-contain rounded-lg shadow-md"
+                    width={400}
+                    height={500}
+                    className="object-contain rounded-lg shadow-md w-auto h-auto"
                   />
                 </div>
               )}

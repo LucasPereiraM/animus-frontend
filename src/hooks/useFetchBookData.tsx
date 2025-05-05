@@ -6,6 +6,7 @@ export type Livro = {
     link_download: string;
     sentimentos: (string | null)[];
     titulo: string;
+    nome_autor?: string; // Adicionado
 };
 
 const useFetchBookData = () => {

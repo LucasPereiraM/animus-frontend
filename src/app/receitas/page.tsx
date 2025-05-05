@@ -4,6 +4,7 @@ import RecipesCarousel from "@/components/recipesCarousel";
 import RecipesGridLayout from "@/components/recipesGridLayout";
 import { useState, useEffect, useRef } from "react";
 import useFetchReceitaData, { Receita } from "@/hooks/useFetchRecipeData";
+import Image from "next/image";
 
 export default function Receitas() {
   const { data, loading, error, fetchData } = useFetchReceitaData();
@@ -16,7 +17,7 @@ export default function Receitas() {
 
   useEffect(() => {
     fetchData("https://maoamiga.up.railway.app/get_in_general_recipe");
-  }, []);
+  }, [fetchData]);
 
   const handleRecipeClick = (receita: Receita) => {
     setSelectedReceita(receita);
@@ -149,12 +150,14 @@ export default function Receitas() {
           <p className="text-gray-600 mb-4">
             Sentimento relacionado: {selectedReceita.sentimento}
           </p>
-          <img
+          <Image
             src={selectedReceita.foto_receita}
             alt={`Foto da receita ${selectedReceita.nome_receita}`}
-            className="max-w-xs md:max-w-md lg:max-w-lg max-h-[500px] object-contain rounded-lg shadow-md mb-10"
+            width={500}
+            height={300}
+            className="rounded-lg"
           />
-          <div className="w-[500px] text-center">
+          <div className="w-[500px] text-center mt-10">
             <h4 className="text-xl font-semibold mb-2">Ingredientes</h4>
             <ul className="mb-6 list-disc list-inside">
               {selectedReceita.ingredientes.map((item, index) => (

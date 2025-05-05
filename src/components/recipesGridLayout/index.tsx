@@ -1,5 +1,6 @@
 "use client";
 import { Receita } from '@/hooks/useFetchRecipeData';
+import Image from 'next/image';
 
 type GridLayoutProps = {
   items: Receita[];
@@ -17,13 +18,16 @@ export default function RecipesGridLayout({ items, onRecipeClick }: GridLayoutPr
             onClick={() => onRecipeClick(receita)}
           >
             <div className="w-full h-48 flex items-center justify-center overflow-hidden mb-4">
-              <img
+              <Image
                 src={
                   !receita.foto_receita || receita.foto_receita === "null"
                     ? "/icons/book-half.svg"
                     : receita.foto_receita
                 }
                 alt={receita.nome_receita}
+                width={500}
+                height={500}
+                layout="responsive"
                 className="max-h-full max-w-full object-contain"
               />
             </div>
