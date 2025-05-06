@@ -51,14 +51,14 @@ export default function Biblioteca() {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center px-4">
+      <div className="w-full max-w-4xl flex flex-col items-center mt-10">
         <InputField
           emotions={true}
-          inputWidth="w-[1000px]"
+          inputWidth="w-full"
           width="w-full"
           marginLeft=""
-          marginTop="mt-10"
+          marginTop=""
           placeholder="Pesquise um livro..."
           sendButton={false}
           value={searchValue}
@@ -66,13 +66,14 @@ export default function Biblioteca() {
           selectedSentiment={selectedSentiment}
           onSelectSentiment={setSelectedSentiment}
         />
+
         {selectedSentiment && (
           <button
             onClick={() => setSelectedSentiment("")}
-            className="mt-2 ml-4 text-sm text-primary underline hover:text-blue-600 transition"
+            className="mt-4 text-sm text-primary underline hover:text-blue-600 transition"
           >
-            <div className="flex flex-row items-center gap-2 ml-64 mt-7">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-eraser-fill" viewBox="0 0 16 16">
+            <div className="flex flex-row items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-eraser-fill" viewBox="0 0 16 16">
                 <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
               </svg>
               Limpar Sentimento
@@ -81,9 +82,9 @@ export default function Biblioteca() {
         )}
       </div>
 
-      <div className="flex flex-col mt-20 mb-10">
-        <h2 className="text-4xl text-gray-600">Escolha um livro</h2>
-        <p className="text-lg text-wrap w-[520px]">
+      <div className="flex flex-col mt-16 mb-10 text-center max-w-2xl">
+        <h2 className="text-3xl sm:text-4xl text-gray-600">Escolha um livro</h2>
+        <p className="text-base sm:text-lg">
           Clique no livro para abrir a exibição, baixe ou busque um livro (por texto ou sentimento)...
         </p>
       </div>
@@ -111,7 +112,7 @@ export default function Biblioteca() {
           </div>
 
           {viewMode === "grid" ? (
-            <div className="h-[800px] overflow-y-auto mx-auto w-fit mb-20">
+            <div className="max-h-[800px] overflow-y-auto mx-auto w-full max-w-6xl mb-20">
               <GridLayout items={filteredBooks.map(item => item.livro)} onBookClick={handleBookClick} downloadIcon />
             </div>
           ) : (
@@ -119,12 +120,12 @@ export default function Biblioteca() {
           )}
 
           {selectedBook && (
-            <div ref={bookDetailsRef} className="flex justify-center mt-20 mb-20 flex-col items-center">
-              <h3 className="text-3xl text-primary mb-4 w-[500px] text-center">
+            <div ref={bookDetailsRef} className="flex justify-center mt-20 mb-20 flex-col items-center px-4">
+              <h3 className="text-2xl sm:text-3xl text-primary mb-4 max-w-md text-center">
                 {selectedBook.titulo}
               </h3>
               {selectedBook.nome_autor && (
-                <p className="text-lg text-gray-500 mb-2 italic">
+                <p className="text-base sm:text-lg text-gray-500 mb-2 italic">
                   Autor: {selectedBook.nome_autor}
                 </p>
               )}
@@ -145,7 +146,7 @@ export default function Biblioteca() {
                 </div>
               )}
               {selectedBook.descricao && (
-                <p className="w-[500px] mt-10 m-10 text-wrap text-center">
+                <p className="max-w-xl mt-10 mb-10 text-center">
                   {selectedBook.descricao}
                 </p>
               )}

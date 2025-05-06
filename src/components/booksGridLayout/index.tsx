@@ -10,7 +10,7 @@ type GridLayoutProps = {
 export default function GridLayout({ items, onBookClick, downloadIcon }: GridLayoutProps) {
   return (
     <div className="flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {items.map((livro, index) => (
           <div
             key={index}

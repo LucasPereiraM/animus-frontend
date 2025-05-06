@@ -69,7 +69,7 @@ const Emotions = ({ selectedSentiment, onSelectSentiment, emotionsMargin, onEmot
                         width={53}
                         height={53}
                     />
-                    <p className="absolute top-full mt-4 text-sm text-gray-600 transform -translate-x-1/2 left-1/2 hidden group-hover:block">
+                    <p className="absolute top-full mt-2 text-sm text-gray-600 transform -translate-x-1/2 left-1/2 hidden group-hover:block">
                         {emotion.name}
                     </p>
                 </button>
@@ -106,12 +106,12 @@ const InputField = ({
     };
 
     return (
-        <div className={`font-raleway w-1/2 tracking-wide flex flex-col justify-center items-center ${marginTop} ${marginLeft}`}>
+        <div className={`font-raleway ${marginTop} ${marginLeft} w-full max-w-lg`}>
             <div className={`bg-[#EFEFEF] p-5 shadow-md rounded-lg ${width} flex flex-col`}>
-                <div className="relative flex">
+                <div className="relative flex flex-wrap w-full">
                     <input
                         type="text"
-                        className={`${inputWidth} h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg`}
+                        className="h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg flex-grow w-full sm:w-[calc(100%-80px)]" // A largura é 100% no mobile, e ajustada no sm
                         value={value}
                         onChange={handleInputChange}
                         placeholder={placeholder}
@@ -119,6 +119,7 @@ const InputField = ({
                     {sendButton && <SendButton onClick={onSendClick} />}
                 </div>
             </div>
+
             {emotions && typeof onSelectSentiment === 'function' && (
                 <Emotions
                     onSelectSentiment={onSelectSentiment}
