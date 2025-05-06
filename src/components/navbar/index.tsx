@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Title from '../title';
 import Sidebar from '../sideNavbar';
-import Image from 'next/image';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
