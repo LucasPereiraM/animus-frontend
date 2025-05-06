@@ -73,7 +73,7 @@ export default function Profissionais() {
                         <InputField emotions={false} inputWidth="w-[400px]" width="w-[450px]" placeholder="CRM" sendButton={false} value={crm} onChange={setCrm} />
                     </div>
                 </div>
-                <button className="ml-10 mt-32" onClick={handleBuscar}>
+                <button className="ml-10 mt-64" onClick={handleBuscar}>
                     <Image src="/icons/search.svg" alt="buscar profissional" className="hover:mb-1" width={60} height={60} />
                 </button>
             </div>
