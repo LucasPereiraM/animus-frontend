@@ -111,7 +111,8 @@ const InputField = ({
                 <div className="relative flex flex-wrap w-full">
                     <input
                         type="text"
-                        className="h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg flex-grow w-full sm:w-[calc(100%-80px)]" // A largura é 100% no mobile, e ajustada no sm
+                        className="h-[74px] text-3xl p-3 border border-[#9E9E9E] shadow-md rounded-lg flex-grow w-full sm:w-[calc(100%-80px)]"
+                        style={{ width: inputWidth }}
                         value={value}
                         onChange={handleInputChange}
                         placeholder={placeholder}
