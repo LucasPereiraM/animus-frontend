@@ -27,7 +27,7 @@ export default function Contato() {
 
     return (
         <div className="flex flex-col justify-center px-40 mb-24">
-            <div className="flex flex-row mt-20 mb-10 gap-12 justify-center items-center">
+            <div className="flex flex-col md:flex-row mt-20 mb-10 gap-12 justify-center items-center">
                 <ActionButton
                     image="/icons/cvvIcon.svg"
                     name="CVV"
@@ -51,25 +51,29 @@ export default function Contato() {
             </div>
 
             {janelaAtual === "cvv" && (
-                <>  <div className="flex flex-col gap-5 ml-2">
-                    <h1 className="text-4xl mt-20 text-gray-600">Procure Centros de Valorização a Vida</h1>
-                    <p className="mb-10 text-lg">Por estado e cidade.</p>
-                </div>
-
+                <div className="flex-col justify-center items-center">
+                    <div className="flex flex-col gap-5 justify-center items-center text-center">
+                        <h1 className="md:text-4xl mt-20 text-gray-600 text-2xl">Procure Centros de Valorização a Vida</h1>
+                        <p className="mb-10 text-lg">Por estado e cidade.</p>
+                    </div>
                     <SelectStateCity
                         estadoSelecionado={estadoSelecionado}
                         setEstadoSelecionado={setEstadoSelecionado}
                         cidadeSelecionada={cidadeSelecionada}
                         setCidadeSelecionada={setCidadeSelecionada}
                     />
-                    <div className="mb-20">
+                    <div className="mb-20 flex justify-center items-center w-[300px] md:w-full -ml-20 md:ml-0">
                         <Table estadoSelecionado={estadoSelecionado} cidadeSelecionada={cidadeSelecionada} />
                     </div>
-                </>
+                </div>
             )}
 
             {janelaAtual === "profissionais" && <Profissionais />}
-            {janelaAtual === "mapa" && <Map apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} />
+            {janelaAtual === "mapa" && (
+                <div className="flex justify-center items-center">
+                    <Map apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} />
+                </div>
+            )
             }
         </div>
     );

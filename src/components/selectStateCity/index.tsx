@@ -45,7 +45,7 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
         const estadosUnicos = Array.from(
           new Set(Object.values(res).map((item) => item.estado).filter(Boolean))
         ).map((sigla) => ({ sigla, nome: sigla }));
-        
+
         setEstados(estadosUnicos);
       }
     });
@@ -63,13 +63,13 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
   }, [estadoSelecionado, dados]);
 
   return (
-    <div className="p-4 space-y-4">
-      <label className="block">
+    <div className="md:p-4 space-y-4 flex-col justify-center items-center -ml-10 mb-10 md:ml-0">
+      <label className="flex-col justify-center items-center">
         <span className="text-gray-700">Estado</span>
         <select
           value={estadoSelecionado}
           onChange={(e) => setEstadoSelecionado(e.target.value)}
-          className="block w-full mt-1 p-2 border rounded"
+          className="block md:w-full mt-1 p-2 border rounded w-[1/2]"
         >
           <option value="">Selecione um estado</option>
           {estados.map((estado) => (
@@ -86,7 +86,7 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
           value={cidadeSelecionada}
           onChange={(e) => setCidadeSelecionada(e.target.value)}
           disabled={!estadoSelecionado}
-          className="block w-full mt-1 p-2 border rounded disabled:bg-gray-200"
+          className="block md:w-full mt-1 p-2 border rounded disabled:bg-gray-200 w-[1/2]"
         >
           <option value="">Selecione uma cidade</option>
           {cidades.map((cidade) => (

@@ -39,10 +39,10 @@ const Table: React.FC<TableProps> = ({ estadoSelecionado, cidadeSelecionada }) =
   }, [data, estadoSelecionado, cidadeSelecionada]);
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="bg-white shadow-md rounded-lg overflow-hidden w-full">
       <div className="overflow-x-auto">
         <div className="max-h-96 overflow-y-auto">
-          <table className="min-w-full w-[1000px]">
+          <table className="min-w-[700px] w-full">
             <thead className="bg-gray-200">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-primary uppercase tracking-wider">
@@ -81,10 +81,10 @@ const Table: React.FC<TableProps> = ({ estadoSelecionado, cidadeSelecionada }) =
               ) : (
                 displayed.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.endereco}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-wrap">{item.mantenedora}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.cnpj}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900 break-words">{item.email}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900 break-words">{item.endereco}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900 break-words">{item.mantenedora}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900">{item.cnpj}</td>
                   </tr>
                 ))
               )}

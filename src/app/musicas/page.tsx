@@ -32,22 +32,23 @@ export default function Musicas() {
     return (
         <div className="">
             <div className="flex flex-col justify-center items-center">
-                <InputField
-                    emotions={true}
-                    inputWidth="w-[600px]"
-                    width="w-[650px]"
-                    placeholder="Estou me sentindo estressado..."
-                    sendButton={true}
-                    value={searchValue}
-                    onChange={setSearchValue}
-                    selectedSentiment={selectedSentiment}
-                    onSelectSentiment={setSelectedSentiment}
-                    emotionsMargin="mr-40"
-                    marginTop="mt-10"
-                    onSendClick={handleBuscar}
-                    onEmotionSelect={handleBuscarSentimento}
-                />
-
+                <div className="mr-40">
+                    <InputField
+                        emotions={true}
+                        inputWidth="w-[600px]"
+                        width="w-[650px]"
+                        placeholder="Estou me sentindo estressado..."
+                        sendButton={true}
+                        value={searchValue}
+                        onChange={setSearchValue}
+                        selectedSentiment={selectedSentiment}
+                        onSelectSentiment={setSelectedSentiment}
+                        emotionsMargin="mr-40"
+                        marginTop="mt-10"
+                        onSendClick={handleBuscar}
+                        onEmotionSelect={handleBuscarSentimento}
+                    />
+                </div>
                 <div className="flex flex-row gap-10 mt-10 mb-10">
                     {showList ? (
                         loading ? (

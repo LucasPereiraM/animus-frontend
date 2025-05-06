@@ -263,7 +263,7 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
   }, [apiKey, clearMarkers, handleLocationError, initMap]);
 
   return (
-    <div className="h-[700px] mt-20 mb-20 flex flex-col gap-5">
+    <div className="h-[700px] mt-20 mb-20 flex flex-col gap-5 w-[900px]">
       <h1 className='text-4xl text-gray-600'>Profissionais na sua área</h1>
       <p className='mb-10 text-lg'>Veja detalhes sobre a localização de profissionais da saúde mental próximos.</p>
       <div ref={mapRef} className="h-full w-full" />

@@ -61,19 +61,19 @@ export default function Profissionais() {
 
     return (
         <div className="flex flex-col gap-10 mb-20">
-            <div className="flex flex-row justify-center items-center">
-                <div className="flex flex-col">
-                    <div className="flex flex-col mb-20 mt-10 -ml-16 gap-5">
-                        <h2 className="text-4xl mt-10 text-gray-600">Pesquise um Profissional</h2>
-                        <p className="text-lg">por Nome, número de Conselho Regional de Medicina (CRM) ou Unidade Federativa (UF)</p>
+            <div className="flex 2xl:flex-row justify-center items-center xl:flex-col lg:flex-col md:flex-col flex-col">
+                <div className="flex flex-col justify-center items-center lg:justify-center lg:items-center md:justify-center md:items-center">
+                    <div className="flex flex-col mb-20 mt-10 gap-5 lg:justify-center lg:items-center lg:ml-0 lg:text-center md:text-center md:ml-0 text-center justify-center items-center">
+                        <h2 className="xl:text-4xl xl:mt-10 text-gray-600 lg:text-2xl text-xl">Pesquise um Profissional</h2>
+                        <p className="xl:text-lg lg:text-base">por Nome, número de Conselho Regional de Medicina (CRM) ou Unidade Federativa (UF)</p>
                     </div>
-                    <div className="flex flex-row gap-10 h-[150px] -ml-16">
-                        <InputField emotions={false} inputWidth="w-[600px]" width="w-[650px]" placeholder="Nome do Médico" sendButton={false} value={nome} onChange={setNome} />
+                    <div className="flex xl:flex-row xl:mb-10 gap-10 h-[150px] xl:-ml-16 lg:flex-col lg:mb-40 lg:ml-0 md:flex-col md:mb-80 md:ml-0 flex-col justify-center items-center mt-20">
+                        <InputField emotions={false} inputWidth="" width="md:w-[500px] w-[400px]" placeholder="Nome do Médico" sendButton={false} value={nome} onChange={setNome} />
                         <InputField emotions={false} inputWidth="w-[150px]" width="w-[200px]" placeholder="UF" sendButton={false} value={uf} onChange={setUf} isUf />
-                        <InputField emotions={false} inputWidth="w-[400px]" width="w-[450px]" placeholder="CRM" sendButton={false} value={crm} onChange={setCrm} />
+                        <InputField emotions={false} inputWidth="w-[400px]" width="md:w-[450px] w-[400px]" placeholder="CRM" sendButton={false} value={crm} onChange={setCrm} />
                     </div>
                 </div>
-                <button className="ml-10 mt-64" onClick={handleBuscar}>
+                <button className="ml-10 md:-mt-24 xl:mt-[300px] lg:-mt-2 mt-40 flex justify-center items-center" onClick={handleBuscar}>
                     <Image src="/icons/search.svg" alt="buscar profissional" className="hover:mb-1" width={60} height={60} />
                 </button>
             </div>
