@@ -22,12 +22,14 @@ const Navbar = () => {
                     />
                 </div>
                 <div className="xs:flex xs:flex-col flex flex-row text-primary gap-2 lg:gap-5 items-center mt-5 lg:mr-14 text-sm lg:text-base whitespace-nowrap">
+                    {/* 
                     <div className='flex flex-row lg:gap-5 gap-2 '>
                         <h4>Acessibilidade</h4>
                         <button>A-</button>
                         <button>A</button>
                         <button>A+</button>
                     </div>
+                    
                     <button>
                         <Image
                             src="/icons/darkmode.svg"
@@ -36,6 +38,7 @@ const Navbar = () => {
                             height={19}
                         />
                     </button>
+                    */}
                 </div>
             </div>
             <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />

@@ -73,7 +73,7 @@ export default function Receitas() {
             emotions={true}
             width="w-full"
             inputWidth="w-[1000px]"
-            placeholder="Estou me sentindo feliz!"
+            placeholder="Pesquise uma receita."
             sendButton={false}
             marginTop="mt-10"
             value={searchValue}

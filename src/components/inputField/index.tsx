@@ -44,10 +44,10 @@ const SendButton = ({ onClick }: SendButtonProps) => {
 };
 
 const emotionsList = [
-    { name: "Raiva", icon: "/icons/angry.svg" },
-    { name: "Tristeza", icon: "/icons/sad.svg" },
-    { name: "Felicidade", icon: "/icons/happy.svg" },
-    { name: "Paixão", icon: "/icons/love.svg" }
+    { name: "Raiva", icon: "/icons/raiva.svg" },
+    { name: "Tristeza", icon: "/icons/triste.svg" },
+    { name: "Felicidade", icon: "/icons/feliz.svg" },
+    { name: "Paixão", icon: "/icons/apaixonado.svg" }
 ];
 
 const Emotions = ({ selectedSentiment, onSelectSentiment, emotionsMargin, onEmotionSelect }: EmotionProps) => {
@@ -60,7 +60,8 @@ const Emotions = ({ selectedSentiment, onSelectSentiment, emotionsMargin, onEmot
                         onSelectSentiment(emotion.name);
                         onEmotionSelect?.(emotion.name);
                     }}
-                    className={`rounded ${selectedSentiment === emotion.name ? "ring-2 ring-blue-500" : ""}`}
+                    className={`relative group w-16 flex flex-col items-center justify-center rounded ${selectedSentiment === emotion.name ? "ring-2 ring-blue-500" : ""
+                        }`}
                 >
                     <Image
                         src={emotion.icon}
@@ -68,12 +69,14 @@ const Emotions = ({ selectedSentiment, onSelectSentiment, emotionsMargin, onEmot
                         width={53}
                         height={53}
                     />
+                    <p className="absolute top-full mt-4 text-sm text-gray-600 transform -translate-x-1/2 left-1/2 hidden group-hover:block">
+                        {emotion.name}
+                    </p>
                 </button>
             ))}
         </div>
     );
 };
-
 
 const InputField = ({
     emotions,
@@ -92,7 +95,6 @@ const InputField = ({
     onSendClick,
     onEmotionSelect,
 }: InputFieldProps) => {
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let input = event.target.value;
 

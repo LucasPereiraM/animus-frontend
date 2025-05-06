@@ -7,6 +7,7 @@ interface BannerProps {
     handleSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
     onEmotionClick: (emotion: string) => void;
 }
+
 const Banner = ({ value, onChange, handleSubmit, onEmotionClick }: BannerProps) => {
     return (
         <div className="font-raleway tracking-wide flex flex-col gap-5 mx-auto mt-32 mb-10 px-4 sm:px-6 max-w-7xl">
@@ -22,11 +23,12 @@ const Banner = ({ value, onChange, handleSubmit, onEmotionClick }: BannerProps) 
                     className="w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 lg:mr-32 md:mr-10"
                 />
             </div>
+
             <div className="bg-[#EFEFEF] p-5 w-[350px] max-w-8xl mx-auto shadow-md rounded-lg lg:ml-2 xl:w-[1200px] lg:w-[950px] xs:w-[250px] md:w-[650px]">
                 <div className="relative">
                     <input
                         type="text"
-                        className=" h-12 sm:h-16 lg:h-20 text-lg sm:text-xl lg:text-3xl px-14 border border-[#9E9E9E] shadow-md rounded-lg xl:w-[1150px] w-[300px] xs:w-[200px] md:w-[600px] lg:w-[900px]"
+                        className="h-12 sm:h-16 lg:h-20 text-lg sm:text-xl lg:text-3xl px-14 border border-[#9E9E9E] shadow-md rounded-lg xl:w-[1150px] w-[300px] xs:w-[200px] md:w-[600px] lg:w-[900px]"
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                         placeholder="Me sinto alegre!"
@@ -46,20 +48,28 @@ const Banner = ({ value, onChange, handleSubmit, onEmotionClick }: BannerProps) 
                     </button>
                 </div>
             </div>
-            <div className="flex justify-center sm:justify-end -mr-0 sm:-mr-32 lg:mr-10 md:mr-10">
-                {["angry", "sad", "happy", "euphoric", "love"].map((emotion) => (
-                    <button key={emotion} onClick={() => onEmotionClick(emotion)}>
-                        <Image
-                            src={`/icons/${emotion}.svg`}
-                            alt={`emoção - ${emotion}`}
-                            width={53}
-                            height={53}
-                            className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16"
-                        />
-                    </button>
+
+            <div className="flex justify-center gap-6 sm:justify-end -mr-0 sm:-mr-32 lg:mr-10 md:mr-10">
+                {["raiva", "triste", "feliz", "apaixonado"].map((emotion) => (
+                    <div
+                        key={emotion}
+                        className="relative w-16 flex flex-col items-center group"
+                    >
+                        <button onClick={() => onEmotionClick(emotion)}>
+                            <Image
+                                src={`/icons/${emotion}.svg`}
+                                alt={`emoção - ${emotion}`}
+                                width={53}
+                                height={53}
+                                className="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16"
+                            />
+                        </button>
+                        <p className="absolute top-full mt-2 text-sm text-center bg-white px-2 py-1 rounded shadow hidden group-hover:block z-10 transform -translate-x-1/2 left-1/2 whitespace-nowrap">
+                            {emotion}
+                        </p>
+                    </div>
                 ))}
             </div>
-
         </div>
     );
 };
