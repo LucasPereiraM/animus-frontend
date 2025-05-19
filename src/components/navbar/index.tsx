@@ -15,7 +15,7 @@ const Navbar = () => {
             <div className="flex flex-row justify-between items-center w-full px-4 overflow-x-hidden">
                 <div className="flex ml-4 gap-4">
                     <Title
-                        title="Mão Amiga"
+                        title="Animus"
                         onToggleSidebar={toggleSidebar}
                         textColor='text-black'
                     />

@@ -14,7 +14,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             className={`fixed top-0 left-0 h-full w-64 bg-white shadow-md z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         >
             <div className='ml-5 mt-5'>
-                <Title title='Mão Amiga' textColor='text-black' />
+                <Title title='Animus' textColor='text-black' />
             </div>
             <button
                 onClick={onClose}

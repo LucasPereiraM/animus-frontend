@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <div className='bg-secondary'>
             <div className='px-4 sm:px-8 lg:px-16 xl:px-44 py-10'>
-                <Title title='Mão Amiga' textColor='text-white' />
+                <Title title='Animus' textColor='text-white' />
 
                 <ul className='flex flex-col sm:flex-row gap-4 sm:gap-10 mt-8 text-lg sm:text-xl lg:text-2xl md:text-base'>
                     <li className='hover:bg-primary rounded p-2'>
