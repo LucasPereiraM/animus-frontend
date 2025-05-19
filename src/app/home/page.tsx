@@ -38,7 +38,7 @@ export default function Home() {
 
     return (
         <div>
-            <div className="relative mb-28">
+            <div className="relative mb-52">
                 <Banner
                     value={userMessage}
                     onChange={setUserMessage}

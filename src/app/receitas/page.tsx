@@ -101,8 +101,8 @@ export default function Receitas() {
 
       </div>
       <div className="flex flex-col mt-20 mb-10">
-        <h2 className="text-4xl text-gray-600">Escolha uma receita</h2>
-        <p className="text-lg text-wrap  w-[530px]">Clique na receita para abrir os ingredientes e modo de preparo ou busque um livro...</p>
+        <h2 className="text-4xl text-gray-600 md:w-full w-[300px]">Escolha uma receita</h2>
+        <p className="text-lg text-wrap  md:w-[530px] w-[300px]">Clique na receita para abrir os ingredientes e modo de preparo ou busque um livro...</p>
       </div>
 
 
@@ -141,37 +141,43 @@ export default function Receitas() {
 
       {selectedReceita && (
         <div
-          ref={receitaDetailsRef}
-          className="mt-20 mb-20 flex flex-col items-center"
-        >
-          <h3 className="text-3xl text-primary mb-4 w-[500px] text-center">
-            {selectedReceita.nome_receita}
-          </h3>
-          <p className="text-gray-600 mb-4">
-            Sentimento relacionado: {selectedReceita.sentimento}
-          </p>
+        ref={receitaDetailsRef}
+        className="mt-20 mb-20 flex flex-col items-center"
+      >
+        <h3 className="text-3xl text-primary mb-4 w-[500px] text-center max-w-full px-4">
+          {selectedReceita.nome_receita}
+        </h3>
+        <p className="text-gray-600 mb-4">
+          Sentimento relacionado: {selectedReceita.sentimento}
+        </p>
+      
+        <div className="w-[400px] max-w-full sm:w-96 md:w-[400px] lg:w-[500px]">
           <Image
             src={selectedReceita.foto_receita}
             alt={`Foto da receita ${selectedReceita.nome_receita}`}
             width={500}
             height={300}
+            layout="responsive"
             className="rounded-lg"
           />
-          <div className="w-[500px] text-center mt-10">
-            <h4 className="text-xl font-semibold mb-2">Ingredientes</h4>
-            <ul className="mb-6 list-disc list-inside">
-              {selectedReceita.ingredientes.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-            <h4 className="text-xl font-semibold mb-2">Modo de preparo</h4>
-            <ol className="list-decimal list-inside text-left">
-              {selectedReceita.preparo.map((step, index) => (
-                <li key={index} className="text-center p-2">{step}</li>
-              ))}
-            </ol>
-          </div>
         </div>
+      
+        <div className="w-[500px] max-w-full md:w-[400px] lg:w-[500px] text-center mt-10 px-4">
+          <h4 className="text-xl font-semibold mb-2">Ingredientes</h4>
+          <ul className="mb-6 list-disc list-inside">
+            {selectedReceita.ingredientes.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          <h4 className="text-xl font-semibold mb-2">Modo de preparo</h4>
+          <ol className="list-decimal list-inside md:text-left md:w-full w-[400px] md:ml-0 ml-8">
+            {selectedReceita.preparo.map((step, index) => (
+              <li key={index} className="p-2">{step}</li>
+            ))}
+          </ol>
+        </div>
+      </div>
+      
       )}
     </div>
   );

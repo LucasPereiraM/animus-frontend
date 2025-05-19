@@ -80,12 +80,12 @@ export default function Profissionais() {
 
             {selectedItem && (
                 <div className="flex flex-row gap-10 justify-center">
-                    <div className="flex flex-col gap-5 w-[950px]">
-                        <InfoField field="Nome" info={selectedItem.nomeMedico} width="w-full" />
-                        <InfoField field="Especialidade" info={selectedItem.especialidade} width="w-full" />
-                        <InfoField field="CRM" info={`${selectedItem.crm} - ${selectedItem.uf}`} width="w-full" />
-                        <InfoField field="Endereço" info={selectedItem.endereco} width="w-full" />
-                        <InfoField field="Telefone" info={selectedItem.telefone} width="w-full" />
+                    <div className="flex flex-col gap-5 md:w-[950px] w-[400px]">
+                        <InfoField field="Nome" info={selectedItem.nomeMedico} width="" />
+                        <InfoField field="Especialidade" info={selectedItem.especialidade} width="" />
+                        <InfoField field="CRM" info={`${selectedItem.crm} - ${selectedItem.uf}`} width="" />
+                        <InfoField field="Endereço" info={selectedItem.endereco} width="" />
+                        <InfoField field="Telefone" info={selectedItem.telefone} width="" />
                     </div>
                 </div>
             )}
