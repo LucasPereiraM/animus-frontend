@@ -16,7 +16,7 @@ interface MusicListProps {
 
 export default function MusicList({ items, onSelect }: MusicListProps) {
     return (
-        <div className="rounded-lg shadow-md p-4 grid grid-cols-1 gap-4 w-[500px] overflow-y-auto h-[600px]">
+        <div className="rounded-lg shadow-md p-4 grid grid-cols-1 gap-4 md:w-[500px] w-[400px] overflow-y-auto h-[600px]">
             {items.map((item, index) => (
                 <button
                     key={index}
