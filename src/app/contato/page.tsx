@@ -26,7 +26,7 @@ export default function Contato() {
     const [janelaAtual, setJanelaAtual] = useState<"cvv" | "profissionais" | "mapa">("cvv");
 
     return (
-        <div className="flex flex-col justify-center px-40 mb-24">
+        <div className="flex flex-col justify-center px-4 md:px-40 mb-24">
             <div className="flex flex-col md:flex-row mt-20 mb-10 gap-12 justify-center items-center">
                 <ActionButton
                     image="/icons/cvvIcon.svg"
@@ -62,7 +62,7 @@ export default function Contato() {
                         cidadeSelecionada={cidadeSelecionada}
                         setCidadeSelecionada={setCidadeSelecionada}
                     />
-                    <div className="mb-20 flex justify-center items-center w-[300px] md:w-full -ml-20 md:ml-0">
+                    <div className="mb-20 flex justify-center items-center w-full px-4">
                         <Table estadoSelecionado={estadoSelecionado} cidadeSelecionada={cidadeSelecionada} />
                     </div>
                 </div>

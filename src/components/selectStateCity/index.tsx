@@ -63,7 +63,7 @@ const SelectStateCity: React.FC<SelectStateCityProps> = ({
   }, [estadoSelecionado, dados]);
 
   return (
-    <div className="md:p-4 space-y-4 flex-col justify-center items-center -ml-10 mb-10 md:ml-0">
+    <div className="flex flex-col items-center md:p-4 space-y-4 mb-10">
       <label className="flex-col justify-center items-center">
         <span className="text-gray-700">Estado</span>
         <select
