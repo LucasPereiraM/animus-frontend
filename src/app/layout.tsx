@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mão Amiga",
+  title: "Animus",
   description: "Recursos de saúde mental",
   icons: {
     icon: '/favicon.svg',

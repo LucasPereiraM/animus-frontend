@@ -27,7 +27,6 @@ export default function RecipesGridLayout({ items, onRecipeClick }: GridLayoutPr
                 alt={receita.nome_receita}
                 width={500}
                 height={500}
-                layout="responsive"
                 className="max-h-full max-w-full object-contain"
               />
             </div>
